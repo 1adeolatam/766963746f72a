@@ -1,0 +1,5 @@
+FirstName,LastName,Chemistry,Biology,Psychology,Functions,English,	
+Tim,Jorgen,73,78,81,77,84,
+Blarg,Stu,81,53,85,90,86,
+Albert,Bandura,99,98,97,10,96,
+Fred,Yabastone,63,60,45,13,79,
