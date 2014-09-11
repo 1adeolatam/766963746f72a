@@ -20,7 +20,7 @@ public class Resistors {
 
         Scanner input = new Scanner(System.in);
         String coloursEntered = input.next();
-        String colour;
+        String colour,colour2,colour3;
         int[] numbers = new int[3];
 
         String[] colourValue = new String[10];
@@ -35,21 +35,35 @@ public class Resistors {
         colourValue[8] = "GREY";
         colourValue[9] = "WHITE";
 
-        int start = 0, endpos ;
-        endpos = coloursEntered.indexOf("-");
+        
+        
 
-        for (int i = 0; i < numbers.length-1; i++) {
-            colour = coloursEntered.substring(start, endpos);
-            System.out.println(colour);
-            for (int j = 0; j < colourValue.length - 1; j++) {
-                if (colour.equalsIgnoreCase(colourValue[j])) {
-                    numbers[i] = j;
-                }
-            }
-            start = endpos;
-            
+        
+        
+        colour = coloursEntered.substring(0, coloursEntered.indexOf("-"));
+           System.out.println(colour);
+        for (int j = 0; j < colourValue.length ; j++) { 
+        if (colour.equalsIgnoreCase(colourValue[j])) {
+                    numbers[0] = j;
         }
-
+        }
+  
+        colour2 = coloursEntered.substring(coloursEntered.indexOf("-")+1, coloursEntered.lastIndexOf("-"));
+           System.out.println(colour2); 
+        for (int j = 0; j < colourValue.length; j++) { 
+        if (colour2.equalsIgnoreCase(colourValue[j])) {
+                    numbers[1] = j;
+        }
+        }
+  
+         colour3 = coloursEntered.substring(coloursEntered.lastIndexOf("-")+1,coloursEntered.length());
+            System.out.println(colour3);
+            
+         for (int j = 0; j < colourValue.length; j++) { 
+        if (colour3.equalsIgnoreCase(colourValue[j])) {
+                    numbers[2] = j;
+        }
+        }
         System.out.println("The resistance is " + numbers[0] + numbers[1] + " x 10^ " + numbers[2]);
 
     }
