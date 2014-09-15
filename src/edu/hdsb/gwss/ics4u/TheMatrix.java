@@ -16,8 +16,13 @@ public class TheMatrix {
     /**
      * @param args the command line arguments
      */
-    public static int[][] generateMatrix(int rowsize, int colsize) {
-        int[][] matrix = new int[rowsize][colsize];
+    public static int[][] generateMatrix() {
+        Scanner input = new Scanner(System.in);
+        int row, col;
+        System.out.println("Please enter row and col size of the array.");
+        row = input.nextInt();
+        col = input.nextInt();
+        int[][] matrix = new int[row][col];
 
         for (int i = 0; i < matrix.length; i++) {
             System.out.print("[ ");
@@ -32,6 +37,7 @@ public class TheMatrix {
     }
 
     public static void trasnposeMatrix(int[][] matrix) {
+
         for (int i = 0; i < matrix.length; i++) {
             System.out.print("[ ");
             for (int j = 0; j < matrix[i].length; j++) {
@@ -43,8 +49,18 @@ public class TheMatrix {
         }
 
     }
-    public static void multiplyMatrixByConstant(int[][] matrix, int constant){
-    
+
+    public static void multiplyMatrixByConstant() {
+        Scanner input = new Scanner(System.in);
+        int row, col;
+        System.out.println("Please enter row and col size of the array.");
+        row = input.nextInt();
+        col = input.nextInt();
+        int[][] matrix = new int[row][col];
+
+        System.out.println("Please enter the constant:");
+        int constant = input.nextInt();
+
         for (int i = 0; i < matrix.length; i++) {
             System.out.print("[ ");
             for (int j = 0; j < matrix[i].length; j++) {
@@ -53,34 +69,84 @@ public class TheMatrix {
             System.out.print("]");
             System.out.println("");
         }
-    
+
     }
-    
-    public static void multiplyMatrix(int[][] matrix1, int[][] matrix2){
-        
-        
-        
-        
-    }
-    public static void main(String[] args) {
+
+    public static int[][] multiplyMatrix() {
         Scanner input = new Scanner(System.in);
-        int row, col,constant;
-        System.out.println("Please enter row and col size of the array.");
+        int row, col;
+
+        System.out.println("Please enter row and col size of the first matrix.");
         row = input.nextInt();
         col = input.nextInt();
-
-        System.out.println("Please enter constant");
-        constant = input.nextInt();
-        
-        System.out.println("Please enter the dimensions of both matrices below");
-      
-        generateMatrix(row,col);
+        int[][] matrix1 = new int[row][col];
+        System.out.println("Please enter row and col size of the second matrix.");
         int row2 = input.nextInt();
-        int col2= input.nextInt();
-        multiplyMatrix(generateMatrix(row,col),generateMatrix(row2,col2));
+        int col2 = input.nextInt();
+        int[][] matrix2 = new int[row2][col2];
+        int[][] newMatrix = new int[row][col2];
+
+        for (int i = 0; i < matrix1.length; i++) {
+
+            for (int j = 0; j < matrix1[i].length; j++) {
+                matrix1[i][j] = (int) (Math.random() * 10);
+            }
+        }
+        for (int i = 0; i < matrix2.length; i++) {
+            for (int j = 0; j < matrix2[i].length; j++) {
+                matrix2[i][j] = (int) (Math.random() * 10);
+            }
+        }
+        if (matrix1[0].length != matrix2.length) {
+            newMatrix = null;
+            System.out.println("Product not defined");
+        } else {
+            int sum = 0;
+            for (int i = 0; i < newMatrix.length; i++) {
+
+                for (int j = 0; j < newMatrix[i].length; j++) {
+                      for (int k = 0; k < newMatrix[i].length; k++) {
+                    newMatrix[i][j]=matrix1[i][j] * matrix2[i][j] + matrix1[i][k];
+                }
+            }
+
+        }
+            for (int i = 0; i < newMatrix.length; i++) {
+            System.out.print("[ ");
+            for (int j = 0; j < newMatrix[i].length; j++) {
+                
+                System.out.format("%-4d", newMatrix[i][j]);
+            }
+            System.out.print("]");
+            System.out.println("");
+        }
+                for (int i = 0; i < matrix1.length; i++) {
+            System.out.print("[ ");
+            for (int j = 0; j < matrix1[i].length; j++) {
+                
+                System.out.format("%-4d", matrix1[i][j]);
+            }
+            System.out.print("]");
+            System.out.println("");
+        }
         
-        
-    
+         for (int i = 0; i < matrix2.length; i++) {
+            System.out.print("[ ");
+            for (int j = 0; j < matrix2[i].length; j++) {
+                
+                System.out.format("%-4d", matrix2[i][j]);
+            }
+            System.out.print("]");
+            System.out.println("");
+        }
+
+        return newMatrix;
+    }
+
+    public static void main(String[] args) {
+
+        multiplyMatrix();
+
     }
 
 }
