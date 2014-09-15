@@ -97,50 +97,54 @@ public class TheMatrix {
                 matrix2[i][j] = (int) (Math.random() * 10);
             }
         }
-        if (matrix1[0].length != matrix2.length) {
+        if (col != row2) {
             newMatrix = null;
             System.out.println("Product not defined");
         } else {
             int sum = 0;
-            for (int i = 0; i < newMatrix.length; i++) {
+            for (int i = 0; i < row; i++) {
 
-                for (int j = 0; j < newMatrix[i].length; j++) {
-                      for (int k = 0; k < newMatrix[i].length; k++) {
-                    newMatrix[i][j]=matrix1[i][j] * matrix2[i][j] + matrix1[i][k];
+                for (int j = 0; j < col2; j++) {
+                    for (int k = 0; k < col; k++) {
+                        newMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
+                    }
                 }
+
+            }
+          
+            for (int i = 0; i < matrix1.length; i++) {
+                System.out.print("[ ");
+                for (int j = 0; j < matrix1[i].length; j++) {
+
+                    System.out.format("%-4d", matrix1[i][j]);
+                }
+                System.out.print("]");
+                System.out.println("");
             }
 
-        }
-            for (int i = 0; i < newMatrix.length; i++) {
-            System.out.print("[ ");
-            for (int j = 0; j < newMatrix[i].length; j++) {
-                
-                System.out.format("%-4d", newMatrix[i][j]);
+            for (int i = 0; i < matrix2.length; i++) {
+                System.out.print("[ ");
+                for (int j = 0; j < matrix2[i].length; j++) {
+
+                    System.out.format("%-4d", matrix2[i][j]);
+                }
+                System.out.print("]");
+                System.out.println("");
             }
-            System.out.print("]");
-            System.out.println("");
-        }
-                for (int i = 0; i < matrix1.length; i++) {
-            System.out.print("[ ");
-            for (int j = 0; j < matrix1[i].length; j++) {
-                
-                System.out.format("%-4d", matrix1[i][j]);
+            
+              for (int i = 0; i < newMatrix.length; i++) {
+                System.out.print("[ ");
+                for (int j = 0; j < newMatrix[i].length; j++) {
+
+                    System.out.format("%-4d", newMatrix[i][j]);
+                }
+                System.out.print("]");
+                System.out.println("");
             }
-            System.out.print("]");
-            System.out.println("");
+            
         }
+            return newMatrix;
         
-         for (int i = 0; i < matrix2.length; i++) {
-            System.out.print("[ ");
-            for (int j = 0; j < matrix2[i].length; j++) {
-                
-                System.out.format("%-4d", matrix2[i][j]);
-            }
-            System.out.print("]");
-            System.out.println("");
-        }
-
-        return newMatrix;
     }
 
     public static void main(String[] args) {
