@@ -7,8 +7,10 @@ package edu.hdsb.gwss.ics4u;
 
 import java.util.Scanner;
 
-/**
- *
+/**Name: Tami Adeola
+ * Version: 1.0
+ * Date: Tuesday, September 16, 2014
+ *Purpose: The purpose of this program is to perform certain functions with matrices
  * @author 1adeolatam
  */
 public class TheMatrix {
@@ -17,6 +19,7 @@ public class TheMatrix {
      * @param args the command line arguments
      */
     public static int[][] generateMatrix() {
+        //get user input for matrix size
         Scanner input = new Scanner(System.in);
         int row, col;
         System.out.println("Please enter row and col size of the array.");
@@ -24,6 +27,7 @@ public class TheMatrix {
         col = input.nextInt();
         int[][] matrix = new int[row][col];
 
+        //creates random matrix to users size
         for (int i = 0; i < matrix.length; i++) {
             System.out.print("[ ");
             for (int j = 0; j < matrix[i].length; j++) {
@@ -111,7 +115,7 @@ public class TheMatrix {
                 }
 
             }
-          
+
             for (int i = 0; i < matrix1.length; i++) {
                 System.out.print("[ ");
                 for (int j = 0; j < matrix1[i].length; j++) {
@@ -121,7 +125,7 @@ public class TheMatrix {
                 System.out.print("]");
                 System.out.println("");
             }
-
+System.out.println("");
             for (int i = 0; i < matrix2.length; i++) {
                 System.out.print("[ ");
                 for (int j = 0; j < matrix2[i].length; j++) {
@@ -131,8 +135,8 @@ public class TheMatrix {
                 System.out.print("]");
                 System.out.println("");
             }
-            
-              for (int i = 0; i < newMatrix.length; i++) {
+System.out.println("");
+            for (int i = 0; i < newMatrix.length; i++) {
                 System.out.print("[ ");
                 for (int j = 0; j < newMatrix[i].length; j++) {
 
@@ -141,15 +145,38 @@ public class TheMatrix {
                 System.out.print("]");
                 System.out.println("");
             }
-            
+
         }
-            return newMatrix;
-        
+        return newMatrix;
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        multiplyMatrix();
+        System.out.println("1: The Random Matrix");
+        System.out.println("2: The Transpose Matrix");
+        System.out.println("3: Multiplying Matrix by Constant");
+        System.out.println("4: Multiplying Two Matrices");
+        System.out.println("Please enter which matrix function you would like to use.");
+        int userinput = input.nextInt();
+
+        switch (userinput) {
+            case 1:
+                generateMatrix();
+                break;
+            case 2:
+                trasnposeMatrix(generateMatrix());
+                break;
+            case 3:
+                multiplyMatrixByConstant();
+                break;
+            case 4:
+                multiplyMatrix();
+                break;
+            default:
+                System.out.println("Please enter valid number");
+
+        }
 
     }
 
