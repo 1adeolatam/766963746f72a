@@ -46,6 +46,7 @@ public class TheMatrix {
             System.out.print("[ ");
             for (int j = 0; j < matrix[i].length; j++) {
 
+                // Displays the inputed matrix transposed [j][i] instead of [i][j]
                 System.out.format("%-4d", matrix[j][i]);
             }
             System.out.print("]");
@@ -55,6 +56,7 @@ public class TheMatrix {
     }
 
     public static void multiplyMatrixByConstant() {
+        //gets constant and matrix dimensions
         Scanner input = new Scanner(System.in);
         int row, col;
         System.out.println("Please enter row and col size of the array.");
@@ -68,6 +70,7 @@ public class TheMatrix {
         for (int i = 0; i < matrix.length; i++) {
             System.out.print("[ ");
             for (int j = 0; j < matrix[i].length; j++) {
+                // doesnt change the actual matrix just displays it multiplied
                 System.out.format("%-4d", constant * matrix[i][j]);
             }
             System.out.print("]");
@@ -79,7 +82,7 @@ public class TheMatrix {
     public static int[][] multiplyMatrix() {
         Scanner input = new Scanner(System.in);
         int row, col;
-
+// gets dimensions for both matrices
         System.out.println("Please enter row and col size of the first matrix.");
         row = input.nextInt();
         col = input.nextInt();
@@ -110,12 +113,13 @@ public class TheMatrix {
 
                 for (int j = 0; j < col2; j++) {
                     for (int k = 0; k < col; k++) {
+                        // sums up the multiplication of the corresponding points in the 2 matrices and puts it into the new Matrix
                         newMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
                     }
                 }
 
             }
-
+// Displays Matrix 1, Matrix 2 and their Product
             for (int i = 0; i < matrix1.length; i++) {
                 System.out.print("[ ");
                 for (int j = 0; j < matrix1[i].length; j++) {
@@ -152,7 +156,7 @@ public class TheMatrix {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
+// Menu for matrix program features
         System.out.println("1: The Random Matrix");
         System.out.println("2: The Transpose Matrix");
         System.out.println("3: Multiplying Matrix by Constant");
@@ -175,7 +179,7 @@ public class TheMatrix {
                 break;
             default:
                 System.out.println("Please enter valid number");
-
+                break;
         }
 
     }
