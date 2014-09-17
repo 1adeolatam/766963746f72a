@@ -7,10 +7,10 @@ package edu.hdsb.gwss.ics4u;
 
 import java.util.Scanner;
 
-/**Name: Tami Adeola
- * Version: 1.0
- * Date: Tuesday, September 16, 2014
- *Purpose: The purpose of this program is to perform certain functions with matrices
+/**
+ * Name: Tami Adeola Version: 1.0 Date: Tuesday, September 16, 2014 Purpose: The
+ * purpose of this program is to perform certain functions with matrices
+ *
  * @author 1adeolatam
  */
 public class TheMatrix {
@@ -125,7 +125,7 @@ public class TheMatrix {
                 System.out.print("]");
                 System.out.println("");
             }
-System.out.println("");
+            System.out.println("");
             for (int i = 0; i < matrix2.length; i++) {
                 System.out.print("[ ");
                 for (int j = 0; j < matrix2[i].length; j++) {
@@ -135,7 +135,7 @@ System.out.println("");
                 System.out.print("]");
                 System.out.println("");
             }
-System.out.println("");
+            System.out.println("");
             for (int i = 0; i < newMatrix.length; i++) {
                 System.out.print("[ ");
                 for (int j = 0; j < newMatrix[i].length; j++) {
