@@ -156,7 +156,7 @@ public class TheMatrix {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-// Menu for matrix program features
+// Menu to access the matrix program features
         System.out.println("1: The Random Matrix");
         System.out.println("2: The Transpose Matrix");
         System.out.println("3: Multiplying Matrix by Constant");
