@@ -14,20 +14,40 @@ public class Account {
     public Account() {
     }
 
+    public static final int ACCOUNT_TYPE_SAVINGS = 0;
+    public static final int ACCOUNT_TYPE_CHECKING = 1;
+    public static final int ACCOUNT_TYPE_CD = 2;
+    public static final int ACCOUNT_TYPE_MONEY_MARKET = 3;
+    public static final int ACCOUNT_TYPE_IRA= 4;
+    
+    private static final String[] ACCOUNT_TYPE_NAMES = {
+        "Savings","Checking","Certificate of Deposit","Money Market","IRA"
+    };
+    
+    
+   private AccountClient accountOwner; 
     private int accountNumber;
-    private int accountType;
-    private int branchNumber;
+       private int branchNumber;
     private String accountName;
     private double currentBalance;
     private boolean active;
     private int pinNumber;
+    private int accountType;
 
-    public Account(int accountNumber, int accountType, int branchNumber, String accountName, boolean active) {
+    public Account(int accountNumber, int accountType, int branchNumber, String accountName, boolean active, AccountClient owner) {
         this.accountNumber = accountNumber;
-        this.accountType = accountType;
+        this.accountOwner = owner;
         this.branchNumber = branchNumber;
         this.accountName = accountName;
         this.active = active;
+    }
+
+    public AccountClient getAccountOwner() {
+        return accountOwner;
+    }
+
+    public void setAccountOwner(AccountClient accountOwner) {
+        this.accountOwner = accountOwner;
     }
 
     public void setPinNumber(int pinNumber) {
@@ -89,6 +109,10 @@ public class Account {
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
+    
+    public String getAccountTypeName(int accounttype){
+        return ACCOUNT_TYPE_NAMES[accounttype];
+    }
 
     public double deposit(double currentBalance, double deposit, int pinEntered) {
 
@@ -129,5 +153,12 @@ public class Account {
     public void trasnfer(int pinEntered){
         
     }
+
+    @Override
+    public String toString() {
+        return "Account{" + "accountOwner=" + accountOwner + ", accountNumber=" + accountNumber + ", branchNumber=" + branchNumber + ", currentBalance=" + currentBalance + ", active=" + active + ", accountType=" + accountType + '}';
+    }
+ 
+    
     
 }
