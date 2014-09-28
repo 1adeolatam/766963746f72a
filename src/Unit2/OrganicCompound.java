@@ -5,6 +5,9 @@
  */
 package Unit2;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  *
  * @author 1adeolatam
@@ -19,6 +22,7 @@ public class OrganicCompound {
     public static final int FUNCTIONAL_GROUP_PHOSPHATE = 5;
     public static final int FUNCTIONAL_GROUP_SULFHYDRYL = 6;
 
+    private OrganicCompoundClient organicgroup;
     private int numberOfCarbons;
     private int numberOfHydrogens;
     private int functionalGrouptype;
@@ -28,6 +32,7 @@ public class OrganicCompound {
     public String compoundName;
     public String chemicalFormula;
     public int chemSpiderNumber;
+    private ArrayList<OrganicCompound> compounds;
 
     public OrganicCompound() {
 
@@ -57,6 +62,22 @@ public class OrganicCompound {
         }
     }
 
+    public void add(OrganicCompound compound) {
+        if (compound.isValid()) {
+                compounds.add(compound);
+        } 
+            
+        }
+    
+    public void remove(OrganicCompound compound){
+        for(OrganicCompound i : compounds){
+            if(i.equals(compound)){
+                compounds.remove(i);
+            }
+        }
+    }
+    
+
     public boolean isValid() {
         boolean isValid;
         if (this.numberOfCarbons <= 0) {
@@ -71,6 +92,36 @@ public class OrganicCompound {
             isValid = true;
         }
         return isValid;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final OrganicCompound other = (OrganicCompound) obj;
+        if (!Objects.equals(this.organicgroup, other.organicgroup)) {
+            return false;
+        }
+        if (!Objects.equals(this.compoundName, other.compoundName)) {
+            return false;
+        }
+        if (!Objects.equals(this.chemicalFormula, other.chemicalFormula)) {
+            return false;
+        }
+        if (this.chemSpiderNumber != other.chemSpiderNumber) {
+            return false;
+        }
+        return true;
     }
 
     public boolean isIsCyclyic() {
@@ -159,10 +210,7 @@ public class OrganicCompound {
 
     @Override
     public String toString() {
-        return "OrganicCompound{" + "Number of Carbons in the compound: " + numberOfCarbons + ",Number of Hydrogens in the compound" + numberOfHydrogens + "\nName: " + compoundName + "\nChemicalFormula : " + chemicalFormula + '}';
+        return "OrganicCompound " + "Number of Carbons in the compound: " + numberOfCarbons + ",Number of Hydrogens in the compound" + numberOfHydrogens + "\nName: " + compoundName + "\nChemicalFormula : " + chemicalFormula + '}';
     }
 
-    
-    
-    
 }
