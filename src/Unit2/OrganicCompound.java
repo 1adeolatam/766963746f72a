@@ -157,4 +157,12 @@ public class OrganicCompound {
         }
     }
 
+    @Override
+    public String toString() {
+        return "OrganicCompound{" + "Number of Carbons in the compound: " + numberOfCarbons + ",Number of Hydrogens in the compound" + numberOfHydrogens + "\nName: " + compoundName + "\nChemicalFormula : " + chemicalFormula + '}';
+    }
+
+    
+    
+    
 }
