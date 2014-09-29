@@ -63,20 +63,45 @@ public class OrganicCompound {
     }
 
     public void add(OrganicCompound compound) {
+
         if (compound.isValid()) {
+
+            for (OrganicCompound i : compounds) {
+                if (i.equals(compound)) {
+                    System.out.println("This compound has already been inputed.");
+                }else{
                 compounds.add(compound);
-        } 
-            
+                }}
+        } else {
+            System.out.println("Please input a valid compound.");
         }
-    
-    public void remove(OrganicCompound compound){
-        for(OrganicCompound i : compounds){
-            if(i.equals(compound)){
-                compounds.remove(i);
+
+    }
+
+    public void remove(OrganicCompound compound) {
+        if (compound.isValid()) {
+            for (OrganicCompound i : compounds) {
+                if (i.equals(compound)) {
+                    compounds.remove(i);
+                }
             }
+
         }
     }
-    
+
+    public OrganicCompound get(int chemspiderID) {
+        if (chemspiderID > 0) {
+            for (OrganicCompound i : compounds) {
+                if (chemspiderID == i.getChemSpiderNumber()) {
+                    return i;
+                }
+
+            }
+        } else {
+
+        }
+        return null;
+    }
 
     public boolean isValid() {
         boolean isValid;
@@ -88,16 +113,13 @@ public class OrganicCompound {
         }
         if (this.compoundName == null || this.compoundName.length() < 5) {
             isValid = false;
+        }
+        if (this.getChemSpiderNumber() < 0) {
+            isValid = false;
         } else {
             isValid = true;
         }
         return isValid;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
     }
 
     @Override
@@ -109,13 +131,10 @@ public class OrganicCompound {
             return false;
         }
         final OrganicCompound other = (OrganicCompound) obj;
-        if (!Objects.equals(this.organicgroup, other.organicgroup)) {
+        if (this.numberOfCarbons != other.numberOfCarbons) {
             return false;
         }
-        if (!Objects.equals(this.compoundName, other.compoundName)) {
-            return false;
-        }
-        if (!Objects.equals(this.chemicalFormula, other.chemicalFormula)) {
+        if (this.numberOfHydrogens != other.numberOfHydrogens) {
             return false;
         }
         if (this.chemSpiderNumber != other.chemSpiderNumber) {
@@ -138,7 +157,7 @@ public class OrganicCompound {
 
     public void setNumberOfCarbons(int numberOfCarbons) {
         if (numberOfCarbons <= 0) {
-
+            System.out.println("The amount of Carbons in this compound is too low");
         } else {
 
             this.numberOfCarbons = numberOfCarbons;
@@ -151,8 +170,12 @@ public class OrganicCompound {
     }
 
     public void setNumberOfHydrogens(int numberOfHydrogens) {
+        if (numberOfHydrogens < 0) {
+            System.out.println("The amount of Hydrogens in this compound is too low");
+        } else {
+            this.numberOfHydrogens = numberOfHydrogens;
 
-        this.numberOfHydrogens = numberOfHydrogens;
+        }
     }
 
     public int getFunctionalGrouptype() {
@@ -161,7 +184,7 @@ public class OrganicCompound {
 
     public void setFunctionalGrouptype(int functionalGrouptype) {
         if (functionalGrouptype < 0) {
-
+            System.out.println("Please enter an available valid functional group type.");
         } else {
             this.functionalGrouptype = functionalGrouptype;
 
@@ -190,7 +213,7 @@ public class OrganicCompound {
 
     public void setCompoundName(String compoundName) {
         if (compoundName == null || compoundName.length() < 5) {
-
+            System.out.println("Please enter a valid name for the compound.");
         } else {
             this.compoundName = compoundName;
         }
@@ -201,8 +224,8 @@ public class OrganicCompound {
     }
 
     public void setChemicalFormula(String chemicalFormula) {
-        if (chemicalFormula == null || chemicalFormula.length() < 2 || chemicalFormula.charAt(0) != 'C') {
-
+        if (chemicalFormula == null || chemicalFormula.length() < 2 || chemicalFormula.substring(0, 1).equalsIgnoreCase("C")) {
+            System.out.println("Please enter a valid Chemical formula.");
         } else {
             this.chemicalFormula = chemicalFormula;
         }
@@ -210,7 +233,7 @@ public class OrganicCompound {
 
     @Override
     public String toString() {
-        return "OrganicCompound " + "Number of Carbons in the compound: " + numberOfCarbons + ",Number of Hydrogens in the compound" + numberOfHydrogens + "\nName: " + compoundName + "\nChemicalFormula : " + chemicalFormula + '}';
+        return "Name: " + compoundName + "\nChemicalFormula : " + chemicalFormula + "\nNumber of Carbons in the compound: " + numberOfCarbons + "\nNumber of Hydrogens in the compound" + numberOfHydrogens;
     }
 
 }
