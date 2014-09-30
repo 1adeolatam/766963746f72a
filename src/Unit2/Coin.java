@@ -9,7 +9,7 @@ package Unit2;
  *
  * @author 1adeolatam
  */
-public class Coins {
+public class Coin {
  
    private String name;    
    private int value;
@@ -21,11 +21,11 @@ public class Coins {
    private int cointype;
    private boolean rusted;
    
-    public Coins(){
+    public Coin(){
     
 }
 
-    public Coins(int value, int idNumber, int cointype) {
+    public Coin(int value, int idNumber, int cointype) {
         this.value = value;
         this.idNumber = idNumber;
         this.cointype = cointype;
@@ -111,7 +111,7 @@ public class Coins {
 
     @Override
     public String toString() {
-        return "Coins{" + "idNumber=" + idNumber + ", cointype=" + cointype + ", rusted=" + rusted + '}';
+        return "Coin{" + "idNumber=" + idNumber + ", cointype=" + cointype + ", rusted=" + rusted + '}';
     }
     
     

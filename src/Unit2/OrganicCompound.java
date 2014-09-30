@@ -22,7 +22,7 @@ public class OrganicCompound {
     public static final int FUNCTIONAL_GROUP_PHOSPHATE = 5;
     public static final int FUNCTIONAL_GROUP_SULFHYDRYL = 6;
 
-    private OrganicCompoundClient organicgroup;
+    private HydroCarbon organicgroup;
     private int numberOfCarbons;
     private int numberOfHydrogens;
     private int functionalGrouptype;
@@ -32,7 +32,7 @@ public class OrganicCompound {
     public String compoundName;
     public String chemicalFormula;
     public int chemSpiderNumber;
-    private ArrayList<OrganicCompound> compounds;
+
 
     public OrganicCompound() {
 
@@ -48,6 +48,15 @@ public class OrganicCompound {
         this.compoundName = compoundName;
         this.chemSpiderNumber = chemSpiderNumber;
     }
+    
+    
+    public HydroCarbon getOrganicgroup() {
+        return organicgroup;
+    }
+
+    public void setOrganicgroup(HydroCarbon organicgroup) {
+        this.organicgroup = organicgroup;
+    }
 
     public int getChemSpiderNumber() {
         return chemSpiderNumber;
@@ -62,59 +71,23 @@ public class OrganicCompound {
         }
     }
 
-    public void add(OrganicCompound compound) {
-
-        if (compound.isValid()) {
-
-            for (OrganicCompound i : compounds) {
-                if (i.equals(compound)) {
-                    System.out.println("This compound has already been inputed.");
-                }else{
-                compounds.add(compound);
-                }}
-        } else {
-            System.out.println("Please input a valid compound.");
-        }
-
-    }
-
-    public void remove(OrganicCompound compound) {
-        if (compound.isValid()) {
-            for (OrganicCompound i : compounds) {
-                if (i.equals(compound)) {
-                    compounds.remove(i);
-                }
-            }
-
-        }
-    }
-
-    public OrganicCompound get(int chemspiderID) {
-        if (chemspiderID > 0) {
-            for (OrganicCompound i : compounds) {
-                if (chemspiderID == i.getChemSpiderNumber()) {
-                    return i;
-                }
-
-            }
-        } else {
-
-        }
-        return null;
-    }
-
     public boolean isValid() {
         boolean isValid;
+
         if (this.numberOfCarbons <= 0) {
+            System.out.println("The Number of Carbons is too low!");
             isValid = false;
         }
         if (this.getNumberOfHydrogens() < 0) {
+            System.out.println("The number of Hydrogens is too low!");
             isValid = false;
         }
         if (this.compoundName == null || this.compoundName.length() < 5) {
             isValid = false;
+            System.out.println(" Invalid Compound Name!");
         }
         if (this.getChemSpiderNumber() < 0) {
+            System.out.println("The ChemSpider Number is too low!");
             isValid = false;
         } else {
             isValid = true;
