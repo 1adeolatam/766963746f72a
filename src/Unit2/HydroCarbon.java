@@ -29,32 +29,29 @@ public class HydroCarbon {
     }
 
     public void remove(OrganicCompound compound) {
-        if (compound.isValid()) {
-            for (OrganicCompound i : this.compounds) {
-                if (i.equals(compound)) {
-                    this.compounds.remove(i);
-                }
-            }
+        if (compound != null && compound.isValid()) {
+            this.compounds.remove(compound);          
 
         } else {
-            System.out.println("The Compound being passed is not valid");
+            System.out.println("The Compound being passed is not valid, or does not exist in the array list.");
         }
     }
 
     public OrganicCompound get(int chemspiderID) {
         OrganicCompound oc = null;
+
         if (chemspiderID < 0) {
             System.out.println("The chemSpiderID entered is invalid");
             return null;
         } else {
             for (OrganicCompound i : this.compounds) {
                 if (chemspiderID == i.getChemSpiderNumber()) {
-                   oc = i;
+                    oc = i;
+
                 }
 
             }
-
+            return oc;
         }
-        return oc;
     }
 }
