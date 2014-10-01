@@ -42,19 +42,19 @@ public class HydroCarbon {
     }
 
     public OrganicCompound get(int chemspiderID) {
+        OrganicCompound oc = null;
         if (chemspiderID < 0) {
-          System.out.println("The chemSpiderID entered is invalid");
-            
+            System.out.println("The chemSpiderID entered is invalid");
+            return null;
         } else {
-      for (OrganicCompound i : this.compounds) {
+            for (OrganicCompound i : this.compounds) {
                 if (chemspiderID == i.getChemSpiderNumber()) {
-                    return i;
+                   oc = i;
                 }
 
-
-            
+            }
 
         }
-
+        return oc;
     }
 }
