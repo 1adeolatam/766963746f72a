@@ -18,13 +18,14 @@ public class HydroCarbon {
     public void add(OrganicCompound compound) {
 
         if (compound.isValid()) {
-
-            if (compound == get(compound.chemSpiderNumber)) {
+            
+            if (compound.equals(get(compound.getChemSpiderNumber()))) {
                 System.out.println("This compound has already been inputed.");
             } else {
-                this.compounds.add(compound);
+                System.out.println("The compound is invalid");
             }
 
+              this.compounds.add(compound);
         }
     }
 
@@ -51,6 +52,7 @@ public class HydroCarbon {
                 }
 
             }
+            System.out.println("The compound does not exist.");
             return oc;
         }
     }
