@@ -83,10 +83,17 @@ public class OrganicCompoundClient {
         System.out.println(Ester.get(12)); 
         //prints to string of said valid object
      
-        //getting non existent object
+        
+        
+        
+        //getting non existent objects
         System.out.println(Ester.get(9001));
         //Successfully displays null
-        OrganicCompound get = Insane.get(0);
+        
+        
+        
+         Insane.get(0);
+        //Successfully displays invalid chem id because the object doesnt exist
         
         
     }
