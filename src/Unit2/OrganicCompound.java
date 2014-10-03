@@ -33,23 +33,20 @@ public class OrganicCompound {
     public String chemicalFormula;
     public int chemSpiderNumber;
 
-
     public OrganicCompound() {
 
     }
 
-    public OrganicCompound(int numberOfCarbons, int numberOfHydrogens, int functionalGrouptype, boolean hasDoublebonds, boolean hasTriplebonds, boolean isCyclyic, String compoundName, int chemSpiderNumber) {
+    public OrganicCompound(int numberOfCarbons, int numberOfHydrogens, int chemSpiderNumber, boolean hasDoublebonds, String compoundName, String ChemicalFormula) {
         this.numberOfCarbons = numberOfCarbons;
         this.numberOfHydrogens = numberOfHydrogens;
-        this.functionalGrouptype = functionalGrouptype;
+        this.chemicalFormula = ChemicalFormula;
         this.hasDoublebonds = hasDoublebonds;
-        this.hasTriplebonds = hasTriplebonds;
-        this.isCyclyic = isCyclyic;
+
         this.compoundName = compoundName;
         this.chemSpiderNumber = chemSpiderNumber;
     }
-    
-    
+
     public HydroCarbon getOrganicgroup() {
         return organicgroup;
     }
@@ -63,8 +60,9 @@ public class OrganicCompound {
     }
 
     public void setChemSpiderNumber(int chemSpiderNumber) {
-        if (chemSpiderNumber < 1) {
-
+        
+        if (chemSpiderNumber <= 0) {
+            System.out.println("ChemSPider Number is invalid");
         } else {
 
             this.chemSpiderNumber = chemSpiderNumber;
@@ -78,21 +76,32 @@ public class OrganicCompound {
             System.out.println("The Number of Carbons is too low!");
             isValid = false;
         }
-        if (this.getNumberOfHydrogens() < 0) {
+       else if (this.getNumberOfHydrogens() < 0) {
             System.out.println("The number of Hydrogens is too low!");
             isValid = false;
         }
-        if (this.compoundName == null || this.compoundName.length() < 5) {
+       else if (this.compoundName == null || this.compoundName.length() < 5) {
             isValid = false;
             System.out.println(" Invalid Compound Name!");
         }
-        if (this.getChemSpiderNumber() < 0) {
+       else if(this.chemicalFormula == null || chemicalFormula.length() < 2 || chemicalFormula.charAt(0) != 'C'){
+            System.out.println("Please enter a valid chemical formula");
+            isValid= false;
+        }
+
+       else if (this.getChemSpiderNumber() <= 0) {
             System.out.println("The ChemSpider Number is too low!");
             isValid = false;
         } else {
             isValid = true;
         }
         return isValid;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
     }
 
     @Override
@@ -104,23 +113,17 @@ public class OrganicCompound {
             return false;
         }
         final OrganicCompound other = (OrganicCompound) obj;
-        if (this.numberOfCarbons != other.numberOfCarbons) {
-            return false;
-        }
-        if (this.numberOfHydrogens != other.numberOfHydrogens) {
-            return false;
-        }
         if (this.chemSpiderNumber != other.chemSpiderNumber) {
             return false;
         }
         return true;
     }
 
-    public boolean isIsCyclyic() {
+    public boolean getCyclyic() {
         return isCyclyic;
     }
 
-    public void setIsCyclyic(boolean isCyclyic) {
+    public void setCyclyicity(boolean isCyclyic) {
         this.isCyclyic = isCyclyic;
     }
 
@@ -164,19 +167,19 @@ public class OrganicCompound {
         }
     }
 
-    public boolean isHasDoublebonds() {
+    public boolean returnDoublebonds() {
         return hasDoublebonds;
     }
 
-    public void setHasDoublebonds(boolean hasDoublebonds) {
+    public void setDoublebonds(boolean hasDoublebonds) {
         this.hasDoublebonds = hasDoublebonds;
     }
 
-    public boolean isHasTriplebonds() {
+    public boolean returnTriplebonds() {
         return hasTriplebonds;
     }
 
-    public void setHasTriplebonds(boolean hasTriplebonds) {
+    public void setTriplebonds(boolean hasTriplebonds) {
         this.hasTriplebonds = hasTriplebonds;
     }
 
@@ -197,7 +200,7 @@ public class OrganicCompound {
     }
 
     public void setChemicalFormula(String chemicalFormula) {
-        if (chemicalFormula == null || chemicalFormula.length() < 2 || chemicalFormula.substring(0, 1).equalsIgnoreCase("C")) {
+        if (chemicalFormula == null || chemicalFormula.length() < 2 || chemicalFormula.charAt(0) != 'C') {
             System.out.println("Please enter a valid Chemical formula.");
         } else {
             this.chemicalFormula = chemicalFormula;
@@ -206,7 +209,7 @@ public class OrganicCompound {
 
     @Override
     public String toString() {
-        return "Name: " + compoundName + "\nChemicalFormula : " + chemicalFormula + "\nNumber of Carbons in the compound: " + numberOfCarbons + "\nNumber of Hydrogens in the compound" + numberOfHydrogens;
+        return "Name: " + compoundName  + "\nNumber of Carbons in the compound: " + numberOfCarbons + "\nNumber of Hydrogens in the compound: " + numberOfHydrogens + "\nChemSpider Number: " + chemSpiderNumber;
     }
 
 }
