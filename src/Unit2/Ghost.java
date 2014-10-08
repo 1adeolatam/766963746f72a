@@ -26,12 +26,43 @@ public class Ghost extends PacmanCharacter {
         
     }
     
+    @Override
     public void draw( ) {        
-     
+    
       
    c.fillOval(this.xLoc, this.yLoc, radius,radius);
    c.fillRect(this.xLoc, this.yLoc+radius/2, radius, radius);
    
+   
+    }
+    @Override
+        public void moveLeft() {
+             this.xLoc = this.xLoc - STEP_SIZE;
+             erase();
+             draw();
+    }
+
+    @Override
+    public void moveRight() {
+
+    }
+
+    @Override
+    public void moveUp() {
+
+    }
+
+    @Override
+    public void moveDown() {
+
+    }
+
+    private void erase() {
+
+        c.setColor(Color.WHITE);
+              
+   c.fillOval(this.xLoc, this.yLoc, radius,radius);
+   c.fillRect(this.xLoc, this.yLoc+radius/2, radius, radius);
    
     }
     
