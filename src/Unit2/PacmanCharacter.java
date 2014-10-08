@@ -14,6 +14,8 @@ import java.awt.Color;
  */
 public class PacmanCharacter {
 
+    
+    public static final int STEP_SIZE = 30;
     public static final int DIRECTION_UP = 1;
     public static final int DIRECTION_DOWN = 2;
     public static final int DIRECTION_LEFT = 3;
