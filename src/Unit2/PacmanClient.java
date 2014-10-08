@@ -5,6 +5,8 @@
  */
 package Unit2;
 
+import java.awt.Color;
+
 /**
  *
  * @author Tami
@@ -14,13 +16,9 @@ public class PacmanClient {
     public static void main(String[] args) {
         
         
-            Ghost Inky = new Ghost();
-        
-        Inky.setxLoc(0);
-        Inky.setyLoc(10);
-        
+            Ghost Inky = new Ghost(Color.MAGENTA,10,60);
         Inky.draw();
-        
+    
         
         Pacman TuPac = new Pacman();
         
@@ -28,7 +26,10 @@ public class PacmanClient {
        TuPac.setyLoc(20);
        
        TuPac.draw();
+       
+       Ghost Blinky = new Ghost(Color.CYAN, 60, 60);
         
+       Blinky.draw();
     }
 }
 

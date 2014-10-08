@@ -6,6 +6,7 @@
 package Unit2;
 
 import hsa.Console;
+import java.awt.Color;
 
 /**
  *
@@ -13,11 +14,17 @@ import hsa.Console;
  */
 public class PacmanCharacter {
 
+    public static final int DIRECTION_UP = 1;
+    public static final int DIRECTION_DOWN = 2;
+    public static final int DIRECTION_LEFT = 3;
+    public static final int DIRECTION_RIGHT = 4;
+
     public static Console c = new Console();
 
     int xLoc;
     int yLoc;
     boolean alive;
+    int direction;
 
     public PacmanCharacter() {
     }
@@ -30,11 +37,22 @@ public class PacmanCharacter {
         }
     }
 
-    public PacmanCharacter(int xLoc, int yLoc) {
-
+    
+    public PacmanCharacter(Color color, int xLoc, int yLoc) {
+        c.setColor(color);
         this.xLoc = xLoc;
         this.yLoc = yLoc;
     }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+    
+    
 
     public int getxLoc() {
         return xLoc;
@@ -54,6 +72,10 @@ public class PacmanCharacter {
 
     public boolean isAlive() {
         return alive;
+    }
+
+    public void draw() {
+
     }
 
     public void setAlive(boolean alive) {

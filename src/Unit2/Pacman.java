@@ -16,7 +16,7 @@ public class Pacman extends PacmanCharacter{
     
     int livesLeft;
     boolean poweredUp;
-    
+    int points;
     
     int radius = 35;
     

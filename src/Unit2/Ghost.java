@@ -5,7 +5,8 @@
  */
 
 package Unit2;
-
+import static Unit2.PacmanCharacter.c;
+import hsa.Console;
 import java.awt.Color;
 
 /**
@@ -15,11 +16,18 @@ import java.awt.Color;
 public class Ghost extends PacmanCharacter {
     int radius = 30;
     boolean eaten;
+    boolean chasingPac;
+
+    public Ghost(Color color, int xLoc, int yLoc) {
+        super(color, xLoc, yLoc);
+    }
     
-    
-    public void draw( ) {
+    public void chase(boolean isChasing){
         
-        c.setColour(Color.blue);
+    }
+    
+    public void draw( ) {        
+     
       
    c.fillOval(this.xLoc, this.yLoc, radius,radius);
    c.fillRect(this.xLoc, this.yLoc+radius/2, radius, radius);
