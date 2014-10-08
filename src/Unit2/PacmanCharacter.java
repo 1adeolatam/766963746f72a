@@ -15,6 +15,8 @@ import java.awt.Color;
 public class PacmanCharacter {
 
     
+    
+    
     public static final int STEP_SIZE = 30;
     public static final int DIRECTION_UP = 1;
     public static final int DIRECTION_DOWN = 2;
@@ -84,6 +86,9 @@ public class PacmanCharacter {
         this.alive = alive;
     }
 
+    public void move(){
+        
+    }
     public void moveLeft() {
 
     }
@@ -108,4 +113,7 @@ public class PacmanCharacter {
         c = hsaConsole;
     }
 
+   
+    
+    
 }

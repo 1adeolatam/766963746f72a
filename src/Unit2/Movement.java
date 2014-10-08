@@ -12,6 +12,7 @@ package Unit2;
  */
 public abstract interface Movement {
     
+    
        public void moveLeft();
 
     public void moveRight();

@@ -56,6 +56,22 @@ public class Ghost extends PacmanCharacter {
     public void moveDown() {
 
     }
+      
+    
+    public void move(int direction){
+        if(direction == 1){
+            moveUp();
+        }else if (direction == 2) {
+            moveDown();
+        }else if (direction ==3){
+            moveLeft();
+        }else if (direction ==4){
+            moveRight();
+        }else{
+            System.out.println("Invalid movement value");
+        }
+    }
+    
 
     private void erase() {
 
