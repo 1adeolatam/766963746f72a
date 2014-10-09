@@ -73,7 +73,7 @@ public class Ghost extends PacmanCharacter {
     }
     
 
-    private void erase() {
+    public void erase() {
 
         c.setColor(Color.WHITE);
               
