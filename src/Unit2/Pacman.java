@@ -15,11 +15,67 @@ import java.awt.Color;
  */
 public class Pacman extends PacmanCharacter {
 
-    int livesLeft;
+    final static int RADIUS = 35;
+    
+    
     boolean poweredUp;
-    int points;
+    String name;
+    
+    
+    int radius;
 
-    int radius = 35;
+    //Constructors
+    public Pacman() {
+        setRadius(RADIUS);
+    }
+
+    public Pacman(String name, int radius) {
+        this.name = name;
+        this.radius = radius;
+    }
+
+    //Getters and Setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isPoweredUp() {
+        return poweredUp;
+    }
+
+    public void setPoweredUp(boolean poweredUp) {
+        this.poweredUp = poweredUp;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        if (radius < 0) {
+
+        } else {
+            this.radius = radius;
+        }
+    }
+
+    // Helpers
+    @Override
+    public void move() {
+        super.move();
+        if (this.yLoc <= (c.maxy() / 2)) {
+            this.poweredUp =true;
+            powerUP();
+        }
+        if (this.xLoc <= (c.maxx() / 2)) {
+            this.poweredUp =true;
+           powerUP();
+        }
+    }
 
     @Override
     public void draw() {
@@ -29,20 +85,25 @@ public class Pacman extends PacmanCharacter {
         c.fillOval(this.xLoc, this.yLoc, radius, radius);
 
     }
-    
-    @Override
-    public void move(){
-        if(direction == 1){
-            moveUp();
-        }else if (direction == 2) {
-            moveDown();
-        }else if (direction ==3){
-            moveLeft();
-        }else if (direction ==4){
-            moveRight();
-        }else{
-            System.out.println("Invalid movement value");
+
+    public void powerUP() {
+        if (this.poweredUp == true) {
+            this.radius = RADIUS * 2;
         }
+    }
+
+    @Override
+    public void erase() {
+
+        c.setColor(Color.WHITE);
+
+        c.fillOval(this.xLoc, this.yLoc, radius, radius);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Pacman's radius is " + radius + ", this pacman's name is  " + this.name;
     }
 
 }

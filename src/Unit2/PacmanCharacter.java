@@ -12,12 +12,9 @@ import java.awt.Color;
  *
  * @author Tami
  */
-public class PacmanCharacter {
+public abstract class PacmanCharacter implements Movement {
 
-    
-    
-    
-    public static final int STEP_SIZE = 30;
+    public static final int STEP_SIZE = 10;
     public static final int DIRECTION_UP = 1;
     public static final int DIRECTION_DOWN = 2;
     public static final int DIRECTION_LEFT = 3;
@@ -25,12 +22,17 @@ public class PacmanCharacter {
 
     public static Console c = new Console();
 
-    int xLoc;
-    int yLoc;
-    boolean alive;
-    int direction;
+    protected int xLoc;
 
+    protected int yLoc;
+    boolean alive;
+    protected int direction;
+
+    //Constructors
     public PacmanCharacter() {
+        if(PacmanCharacter == null){
+            System.out.println("NO null objects allowed");
+        }
     }
 
     public PacmanCharacter(Console hsaConsole) {
@@ -41,29 +43,39 @@ public class PacmanCharacter {
         }
     }
 
-    
-    public PacmanCharacter(Color color, int xLoc, int yLoc) {
-        c.setColor(color);
-        this.xLoc = xLoc;
-        this.yLoc = yLoc;
+    protected PacmanCharacter(Color color, int xLoc, int yLoc) {
+        if (xLoc < 0 || yLoc < 0) {
+            System.out.println("Invalid location for this pacman character");
+        } else {
+            c.setColor(color);
+            this.xLoc = xLoc;
+            this.yLoc = yLoc;
+        }
     }
 
+    //object setters and getters
     public int getDirection() {
         return direction;
     }
 
     public void setDirection(int direction) {
-        this.direction = direction;
+        if (direction < 1 || direction > 4) {
+            System.out.println("invalid direction");
+        } else {
+            this.direction = direction;
+        }
     }
-    
-    
 
     public int getxLoc() {
         return xLoc;
     }
 
     public void setxLoc(int xLoc) {
-        this.xLoc = xLoc;
+        if (xLoc < 0) {
+
+        } else {
+            this.xLoc = xLoc;
+        }
     }
 
     public int getyLoc() {
@@ -71,49 +83,76 @@ public class PacmanCharacter {
     }
 
     public void setyLoc(int yLoc) {
-        this.yLoc = yLoc;
+        if (yLoc < 0) {
+
+        } else {
+            this.yLoc = yLoc;
+        }
     }
 
     public boolean isAlive() {
         return alive;
     }
 
-    public void draw() {
-
-    }
-
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
 
-    public void move(){
-        
-    }
-    public void moveLeft() {
+    //Helper methods
+    @Override
+    public abstract void draw();
 
-    }
-
+    @Override
     public void moveRight() {
 
+        erase();
+        this.xLoc = this.xLoc + STEP_SIZE;
+        draw();
     }
 
+    @Override
     public void moveUp() {
 
+        erase();
+        this.yLoc = this.yLoc - STEP_SIZE;
+        draw();
     }
 
+    @Override
     public void moveDown() {
 
+        erase();
+        this.yLoc = this.yLoc + STEP_SIZE;
+        draw();
     }
 
-    private void erase() {
+    @Override
+    public void moveLeft() {
 
+        erase();
+        this.xLoc = this.xLoc - STEP_SIZE;
+        draw();
+    }
+
+    @Override
+    public abstract void erase();
+
+    public void move() {
+        if (this.direction == 1) {
+            this.moveUp();
+        } else if (this.direction == 2) {
+            this.moveDown();
+        } else if (this.direction == 3) {
+            this.moveLeft();
+        } else if (this.direction == 4) {
+            this.moveRight();
+        } else {
+            System.out.println("Invalid movement value");
+        }
     }
 
     public static void setConsole(Console hsaConsole) {
         c = hsaConsole;
     }
 
-   
-    
-    
 }
