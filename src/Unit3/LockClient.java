@@ -22,6 +22,7 @@ public class LockClient {
         MustardLock.unlock(2,3, 7, 4);
         MustardLock.lock();
         MustardLock.unlock(64, 3, 5, 2);
+      
         System.out.println(MustardLock.toString());
         System.out.println(MustardLock.getCombo());
         System.out.println(MustardLock.getCombo());

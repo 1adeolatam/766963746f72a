@@ -5,17 +5,14 @@
  */
 package Unit3;
 
-import javax.swing.JFrame;
-import javax.swing.JComponent;
+
 /**
  *
  * @author 1adeolatam
  */
 public class GUIday1 {
     
-    JFrame frame = new JFrame("no");
-    
-    
+  
     
     
 }
