@@ -26,8 +26,7 @@ public class Dietester {
     Die die = new Die();
     
     frame.add(frame, die);
-    
-    frame.setVisible();
+
     
     
     }
