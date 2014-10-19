@@ -5,9 +5,10 @@
  */
 package Unit3;
 
-
+import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JComponent;
+
 /**
  *
  * @author 1adeolatam
@@ -18,17 +19,25 @@ public class Dietester {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      
-        
-        
-          JFrame frame = new JFrame("no");
-    
-    Die die = new Die();
-    
-    frame.add(frame, die);
 
-    
-    
+        Graphics g;
+        JFrame Board = new JFrame("Dice holder 1");
+          Board.setSize(1000, 1000);
+          Board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        Board.setVisible(true);
+        
+        Die die = new Die();
+
+        die.setVisible(true);
+        die.setValue((int)(Math.random() * 5) + 1);
+
+        
+        Board.add(die);
+        
+        
+        
+        
     }
-    
+
 }
