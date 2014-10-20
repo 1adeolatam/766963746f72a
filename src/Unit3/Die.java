@@ -6,8 +6,11 @@
 package Unit3;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+
 
 /**
  *
@@ -23,7 +26,9 @@ public class Die extends JPanel {
 
     public Die() {
         this.setSize(100, 100);
-        this.setBackground(Color.orange);
+        Dimension d = new Dimension(SIZE_FACTOR*100, SIZE_FACTOR*100 );
+        this.setPreferredSize(d);
+
 
     }
 
@@ -37,7 +42,9 @@ public class Die extends JPanel {
     }
 
     public void setSizeFactor(int sizeFactor) {
-
+        this.setSize(100, 100);
+        Dimension d = new Dimension( 400 * SIZE_FACTOR, 300*SIZE_FACTOR );
+        this.setPreferredSize(d);
         SIZE_FACTOR = sizeFactor;
 
     }
@@ -52,34 +59,33 @@ public class Die extends JPanel {
 
     private void dotsetter(Graphics g) {
 
-        
-        if ((value %2) == 1) {
-            this.dot(g,1,1);
+        if ((value % 2) == 1) {
+            this.dot(g, 1, 1);
         }
         if (value > 1) {
             this.dot(g, 0, 0);
             this.dot(g, 2, 2);
         }
-        if(value > 3){
-            this.dot(g,2,0);
+        if (value > 3) {
+            this.dot(g, 2, 0);
             this.dot(g, 0, 2);
         }
-        if(value ==6){
-             this.dot(g, 0, 1);
+        if (value == 6) {
+            this.dot(g, 0, 1);
             this.dot(g, 2, 1);
         }
-        
+
     }
 
     private void dot(Graphics g, int row, int col) {
         g.setColor(Color.GREEN);
-        g.fillOval(10 + (row * 30), 10 + (col * 30), RADIUS, RADIUS);
+        g.fillOval((SIZE_FACTOR *(WIDTH / 10) + (row * 30)), (SIZE_FACTOR *(WIDTH / 10) + (col * 30)), (SIZE_FACTOR *RADIUS), (SIZE_FACTOR *RADIUS));
     }
 
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics g2d = (Graphics) grphcs;
-        g2d.setColor(Color.BLACK);
+        g2d.setColor(Color.black);
         grphcs.fillRect(0, 0, WIDTH * SIZE_FACTOR, WIDTH * SIZE_FACTOR);
         dotsetter(g2d);
 
