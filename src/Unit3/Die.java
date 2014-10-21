@@ -11,7 +11,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-
 /**
  *
  * @author 1adeolatam
@@ -23,12 +22,12 @@ public class Die extends JPanel {
 
     int SIZE_FACTOR = 1;
     int value;
+    Graphics g;
 
     public Die() {
         this.setSize(100, 100);
-        Dimension d = new Dimension(SIZE_FACTOR*100, SIZE_FACTOR*100 );
+        Dimension d = new Dimension(SIZE_FACTOR * 100, SIZE_FACTOR * 100);
         this.setPreferredSize(d);
-
 
     }
 
@@ -43,7 +42,7 @@ public class Die extends JPanel {
 
     public void setSizeFactor(int sizeFactor) {
         this.setSize(100, 100);
-        Dimension d = new Dimension( 400 * SIZE_FACTOR, 300*SIZE_FACTOR );
+        Dimension d = new Dimension(400 * SIZE_FACTOR, 300 * SIZE_FACTOR);
         this.setPreferredSize(d);
         SIZE_FACTOR = sizeFactor;
 
@@ -79,7 +78,13 @@ public class Die extends JPanel {
 
     private void dot(Graphics g, int row, int col) {
         g.setColor(Color.GREEN);
-        g.fillOval((SIZE_FACTOR *(WIDTH / 10) + (row * 30)), (SIZE_FACTOR *(WIDTH / 10) + (col * 30)), (SIZE_FACTOR *RADIUS), (SIZE_FACTOR *RADIUS));
+        g.fillOval((SIZE_FACTOR * (WIDTH / 10) + (row * 30)), (SIZE_FACTOR * (WIDTH / 10) + (col * 30)), (SIZE_FACTOR * RADIUS), (SIZE_FACTOR * RADIUS));
+    }
+
+    public void roll() {
+
+        value = ((int) (Math.random() * 6) + 1);
+        this.paintComponent(g);
     }
 
     @Override
