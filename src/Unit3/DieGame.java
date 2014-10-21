@@ -63,7 +63,7 @@ public class DieGame extends JFrame implements ActionListener {
         if (die.value == die2.value) {
             System.out.println("YOU WIN");
            
-        } else if ((die.getValue() + die2.getValue()) == 7) {
+        } else if ((die.value + die2.value) == 7) {
             System.out.println("YOU LOSE");
           
         }
