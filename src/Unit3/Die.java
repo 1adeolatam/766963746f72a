@@ -83,8 +83,8 @@ public class Die extends JPanel {
 
     public void roll() {
 
-        value = ((int) (Math.random() * 6) + 1);
-        this.paintComponent(g);
+        this.value = ((int) (Math.random() * 6) + 1);
+      
     }
 
     @Override
