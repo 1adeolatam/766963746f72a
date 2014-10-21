@@ -15,7 +15,7 @@ public class Dietester {
     public static void main(String[] args) {
 
    DieGame iWplAg = new DieGame("iWannaplayAgame");
-      
+
      
 
     }

@@ -52,6 +52,11 @@ public class Die extends JPanel {
         value = valueOfdie;
     }
 
+    public int getValue() {
+        return value;
+    }
+  
+
     public void setPosition() {
 
     }

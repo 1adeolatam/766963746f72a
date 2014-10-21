@@ -30,7 +30,7 @@ public class DieGame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evt) {
 
-     die.roll();
+        die.roll();
         die2.roll();
         this.repaint();
 
@@ -60,7 +60,13 @@ public class DieGame extends JFrame implements ActionListener {
 
         this.pack();
         setVisible(true);
-
+        if (die.value == die2.value) {
+            System.out.println("YOU WIN");
+           
+        } else if ((die.getValue() + die2.getValue()) == 7) {
+            System.out.println("YOU LOSE");
+          
+        }
     }
 
 }
