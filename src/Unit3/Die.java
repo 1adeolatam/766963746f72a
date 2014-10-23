@@ -23,6 +23,8 @@ public class Die extends JPanel {
     int SIZE_FACTOR = 1;
     int value;
     Graphics g;
+    Color dieColor = Color.BLACK;
+    Color dotColor = Color.GREEN;
 
     public Die() {
         this.setSize(100, 100);
@@ -36,7 +38,9 @@ public class Die extends JPanel {
         value = number;
     }
 
-    public void setColour() {
+    public void setColour(Color newDieColor, Color newdotColor) {
+        dotColor = newdotColor;
+        dieColor = newDieColor;
 
     }
 
@@ -54,11 +58,6 @@ public class Die extends JPanel {
 
     public int getValue() {
         return value;
-    }
-  
-
-    public void setPosition() {
-
     }
 
     private void dotsetter(Graphics g) {
@@ -82,20 +81,20 @@ public class Die extends JPanel {
     }
 
     private void dot(Graphics g, int row, int col) {
-        g.setColor(Color.GREEN);
+        g.setColor(dotColor);
         g.fillOval((SIZE_FACTOR * (WIDTH / 10) + (row * 30)), (SIZE_FACTOR * (WIDTH / 10) + (col * 30)), (SIZE_FACTOR * RADIUS), (SIZE_FACTOR * RADIUS));
     }
 
     public void roll() {
 
         this.value = ((int) (Math.random() * 6) + 1);
-      
+
     }
 
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics g2d = (Graphics) grphcs;
-        g2d.setColor(Color.black);
+        g2d.setColor(dieColor);
         grphcs.fillRect(0, 0, WIDTH * SIZE_FACTOR, WIDTH * SIZE_FACTOR);
         dotsetter(g2d);
 

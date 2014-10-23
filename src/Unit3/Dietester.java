@@ -11,15 +11,10 @@ package Unit3;
  */
 public class Dietester {
 
-   
     public static void main(String[] args) {
 
-   DieGame iWplAg = new DieGame("iWannaplayAgame");
-
-     
+        DieGame iWplAg = new DieGame("iWannaplayAgame");
 
     }
 
 }
-
-
