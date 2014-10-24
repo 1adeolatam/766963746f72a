@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Unit3;
 
 import java.awt.BorderLayout;
@@ -27,16 +21,19 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     private JPanel midDicePanel;
     private JPanel botDicePanel;
     private Die[][] dice;
-    private String carPrice = "65603";
+    private String carPrice = "65613";
     public int rolledNumber;
     public JPanel showedDice = new JPanel();
     private JPanel leftrirst;
+    private int totalDie = 3;
+    private int currentdice = 0;
+
     public PriceIsSometimesRightGame() {
         init();
     }
 
     public void init() {
-      
+
         // MAIN WINDOW; The Price is Righta
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("The Price is Right!");
@@ -63,29 +60,23 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         this.botDicePanel = new JPanel();
         this.botDicePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
-        
-        
-          this.showedDice.setLayout(new BoxLayout(this.showedDice, BoxLayout.PAGE_AXIS));
-        
-          //1st digit of price
-          
-          this.leftrirst = new JPanel();
-          this.leftrirst.setLayout(new BorderLayout());
-          
-          
+        this.showedDice.setLayout(new BoxLayout(this.showedDice, BoxLayout.PAGE_AXIS));
+
+        //1st digit of price
+        this.leftrirst = new JPanel();
+        this.leftrirst.setLayout(new BoxLayout(this.leftrirst, BoxLayout.LINE_AXIS));
+
         // GENERATE DIE, put them in TOP/BOT Dice Panel
         this.dice = new Die[3][4];
         initDice();
 
         // TOP / BOT Dice Panel
-     
-
         this.middlePanel.add(showedDice);
 
         // ADD ITEMS TO middlePanel
         this.add(middlePanel, BorderLayout.CENTER);
         this.add(new JLabel("PAGE_START"), BorderLayout.PAGE_START);
-        this.add(leftrirst , BorderLayout.LINE_START);
+        this.add(leftrirst, BorderLayout.LINE_START);
         this.add(new JLabel("LINE_END"), BorderLayout.LINE_END);
         this.add(new JLabel("PAGE_END"), BorderLayout.PAGE_END);
         //this.pack();
@@ -96,23 +87,29 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         Die die;
         Dimension d = new Dimension(100, 100);
         Die firstNumber;
-         JPanel firstpanel = new JPanel();
+        JPanel firstpanel = new JPanel();
         firstNumber = new Die((Integer.parseInt(carPrice.substring(0, 1))));
-       Dimension e = new Dimension(100, 500);
-        firstpanel.setPreferredSize(e);
+        firstNumber.setPreferredSize(d);
+
         firstpanel.add(firstNumber);
-        firstNumber.setLocation(0, 250);
-    
+
         for (int row = 0; row < dice.length; row++) {
             for (int col = 0; col < dice[row].length; col++) {
-
+               // Die scored = new Die((Integer.parseInt(carPrice.substring(, ))));
                 die = new Die();
                 die.setPreferredSize(d);
                 die.setSize(d);
                 die.setName(row + "-" + col);
                 die.addMouseListener((MouseListener) this);
 
-                this.dice[row][col] = die;
+                if (row == 0 || row == 2) {
+
+                    //this.dice[row][col] = scored;
+
+                } else if (row == 2) {
+                    this.botDicePanel.add(this.dice[row][col]);
+                }
+
                 if (row == 0) {
                     this.topDicePanel.add(this.dice[row][col]);
                 } else if (row == 1) {
@@ -123,8 +120,8 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             }
         }
 
-           this.showedDice.add(topDicePanel);
-           
+        this.showedDice.add(topDicePanel);
+
         this.showedDice.add(midDicePanel);
         this.showedDice.add(botDicePanel);
         this.leftrirst.add(firstpanel);
@@ -142,7 +139,20 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     public void mouseClicked(MouseEvent e) {
 
         System.out.println("Mouse Clicked on " + e.getComponent().getName());
-        //e.getComponent());
+
+        // Moves through the 4 dice
+        if (e.getComponent().getName().substring(0, 2).equalsIgnoreCase("0-")) {
+            System.out.println("Higher!");
+            this.dice[0][currentdice].setColour(Color.RED, Color.yellow);
+            currentdice++;
+        } else if (e.getComponent().getName().substring(0, 2).equalsIgnoreCase("2-")) {
+
+            System.out.println("Lower!");
+            this.dice[2][currentdice].setColour(Color.RED, Color.yellow);
+            currentdice++;
+        }
+        repaint();
+
     }
 
     @Override
