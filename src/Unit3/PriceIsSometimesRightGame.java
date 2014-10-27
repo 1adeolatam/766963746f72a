@@ -30,6 +30,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     private int currentdice = 0;
     public Die firstRoll = new Die((int) (Math.random() * 6 + 1));
     private String discriminant = "";
+    public JLabel outcome;
 
     public PriceIsSometimesRightGame() {
         init();
@@ -82,6 +83,10 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         this.add(new JLabel("LINE_END"), BorderLayout.LINE_END);
         this.add(new JLabel("PAGE_END"), BorderLayout.PAGE_END);
         //this.pack();
+        
+        
+        
+      
 
     }
 
@@ -96,6 +101,12 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         this.firstRoll.setPreferredSize(d);
         firstpanel.add(firstNumber);
 
+        
+         outcome = new JLabel("Playing");
+         outcome.
+         outcome.setPreferredSize(d);
+         
+         
         for (int row = 0; row < dice.length; row++) {
             for (int col = 0; col < dice[row].length; col++) {
 
@@ -129,6 +140,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         this.showedDice.add(midDicePanel);
         this.showedDice.add(botDicePanel);
         this.leftrirst.add(firstpanel);
+        this.leftrirst.add(outcome);
         repaint();
     }
 
@@ -155,7 +167,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             System.out.println("Higher!");
             this.dice[0][this.currentdice].setColour(Color.RED, Color.yellow);
 
-            if (this.dice[1][this.currentdice].value > ((Integer.parseInt(carPrice.substring(0 + this.currentdice, 1 + this.currentdice))))) {
+            if (((Integer.parseInt(carPrice.substring(this.currentdice, 1 + this.currentdice)))) > this.dice[1][this.currentdice].value) {
 
                 this.discriminant = this.discriminant + "1";
             }
@@ -165,30 +177,31 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             System.out.println("Lower!");
             this.dice[2][this.currentdice].setColour(Color.RED, Color.yellow);
 
-            if (this.dice[1][this.currentdice].value < ((Integer.parseInt(carPrice.substring(0 + this.currentdice, 1 + this.currentdice))))) {
+            if (((Integer.parseInt(carPrice.substring(this.currentdice, 1 + this.currentdice)))) < this.dice[1][this.currentdice].value) {
 
                 this.discriminant = this.discriminant + "1";
             }
 
         }
 
-        
         if (this.currentdice == 3) {
             if (this.discriminant.length() == 4) {
                 System.out.println("YOU WIN");
+                this.outcome.setText("YOU WIN!!!");
             } else {
                 System.out.println("YOU LOSE!!!!!!!!!!");
+                this.outcome.setText("YOU LOSE!!!");
             }
 
         }
-            repaint();
+        repaint();
 
         System.out.println("Curret die" + this.currentdice);
         this.currentdice++;
         if (this.currentdice >= 0) {
             this.dice[1][this.currentdice].setValue((int) ((Math.random() * 6) + 1));
         }
-    
+
     }
 
     @Override
