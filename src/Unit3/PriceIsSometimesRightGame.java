@@ -23,6 +23,12 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     private JPanel botDicePanel;
     public Die[][] dice;
     private String carPrice = "66666";
+    private String[] carPrices = {
+        "12345", "11111", "23333", "33333", "54213", "25234", "22223", "54321", "36542", "45333",
+        "56555", "21354"
+
+    };
+
     public int rolledNumber;
     public JPanel showedDice = new JPanel();
     private JPanel leftrirst;
@@ -31,9 +37,15 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     public Die firstRoll = new Die((int) (Math.random() * 6 + 1));
     private String discriminant = "";
     public JLabel outcome;
-
+    public JPanel botpanel;
+    private int carIndex;
+    
+    
+    
     public PriceIsSometimesRightGame() {
         init();
+        this.carIndex = (int) (Math.random() * carPrices.length);
+        this.carPrice = this.carPrices[carIndex];
     }
 
     public void init() {
@@ -44,31 +56,33 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
 
         // WINDOW; Border Layout
         this.setLayout(new BorderLayout());
-        this.setSize(800, 400);
+        this.setSize(1000, 400);
 
         // PARENT PANEL
         this.middlePanel = new JPanel();
         this.middlePanel.setLayout(new BoxLayout(this.middlePanel, BoxLayout.PAGE_AXIS));
-        this.middlePanel.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+        //this.middlePanel.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 
         // TOP DICE; HIGH
         this.topDicePanel = new JPanel();
-        this.topDicePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //this.topDicePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         // mid DICE; ROLLed
         this.midDicePanel = new JPanel();
-        this.midDicePanel.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
+        //this.midDicePanel.setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
 
         // BOT DICE; LOW
         this.botDicePanel = new JPanel();
-        this.botDicePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+        //this.botDicePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 
         this.showedDice.setLayout(new BoxLayout(this.showedDice, BoxLayout.PAGE_AXIS));
 
         //1st digit of price
         this.leftrirst = new JPanel();
-        this.leftrirst.setLayout(new BoxLayout(this.leftrirst, BoxLayout.LINE_AXIS));
-
+        this.leftrirst.setLayout(new BoxLayout(this.leftrirst, BoxLayout.PAGE_AXIS));
+        
+                this.botpanel = new JPanel();
+        
         // GENERATE DIE, put them in TOP/BOT Dice Panel
         this.dice = new Die[3][4];
         initDice();
@@ -78,15 +92,11 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
 
         // ADD ITEMS TO middlePanel
         this.add(middlePanel, BorderLayout.CENTER);
-        this.add(new JLabel("PAGE_START"), BorderLayout.PAGE_START);
+        this.add(new JLabel(), BorderLayout.PAGE_START);
         this.add(leftrirst, BorderLayout.LINE_START);
-        this.add(new JLabel("LINE_END"), BorderLayout.LINE_END);
-        this.add(new JLabel("PAGE_END"), BorderLayout.PAGE_END);
-        //this.pack();
-        
-        
-        
-      
+        this.add(new JLabel(), BorderLayout.LINE_END);
+        this.add(botpanel, BorderLayout.PAGE_END);
+     
 
     }
 
@@ -95,18 +105,16 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         Dimension d = new Dimension(100, 100);
         Die firstNumber;
         JPanel firstpanel = new JPanel();
+       
         firstNumber = new Die((Integer.parseInt(carPrice.substring(0, 1))));
         firstNumber.setPreferredSize(d);
 
         this.firstRoll.setPreferredSize(d);
         firstpanel.add(firstNumber);
 
-        
-         outcome = new JLabel("Playing");
-         outcome.
-         outcome.setPreferredSize(d);
-         
-         
+        outcome = new JLabel("Playing");
+        outcome.setSize(500, 100);
+
         for (int row = 0; row < dice.length; row++) {
             for (int col = 0; col < dice[row].length; col++) {
 
@@ -140,7 +148,9 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         this.showedDice.add(midDicePanel);
         this.showedDice.add(botDicePanel);
         this.leftrirst.add(firstpanel);
+        this.outcome.setLocation(0, WIDTH);
         this.leftrirst.add(outcome);
+        this.botpanel.add(outcome);
         repaint();
     }
 
@@ -158,7 +168,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     ) {
         System.out.println("Mouse Clicked on " + e.getComponent().getName());
 
-        if (this.dice[1][this.currentdice].value == ((Integer.parseInt(carPrice.substring(0 + this.currentdice, 1 + this.currentdice))))) {
+        if (this.dice[1][this.currentdice].value == ((Integer.parseInt(carPrice.substring(1 + this.currentdice, 2 + this.currentdice))))) {
             this.dice[1][this.currentdice].setColour(Color.blue, Color.yellow);
 
             this.discriminant = this.discriminant + "1";
@@ -167,7 +177,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             System.out.println("Higher!");
             this.dice[0][this.currentdice].setColour(Color.RED, Color.yellow);
 
-            if (((Integer.parseInt(carPrice.substring(this.currentdice, 1 + this.currentdice)))) > this.dice[1][this.currentdice].value) {
+            if (((Integer.parseInt(carPrice.substring(1 + this.currentdice, 2 + this.currentdice)))) > this.dice[1][this.currentdice].value) {
 
                 this.discriminant = this.discriminant + "1";
             }
@@ -177,7 +187,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             System.out.println("Lower!");
             this.dice[2][this.currentdice].setColour(Color.RED, Color.yellow);
 
-            if (((Integer.parseInt(carPrice.substring(this.currentdice, 1 + this.currentdice)))) < this.dice[1][this.currentdice].value) {
+            if (((Integer.parseInt(carPrice.substring(1 + this.currentdice, 2 + this.currentdice)))) < this.dice[1][this.currentdice].value) {
 
                 this.discriminant = this.discriminant + "1";
             }
@@ -187,10 +197,11 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         if (this.currentdice == 3) {
             if (this.discriminant.length() == 4) {
                 System.out.println("YOU WIN");
-                this.outcome.setText("YOU WIN!!!");
+                this.outcome.setText("YOU WIN!!! The actual price is $" + this.carPrices[this.carIndex]);
+
             } else {
                 System.out.println("YOU LOSE!!!!!!!!!!");
-                this.outcome.setText("YOU LOSE!!!");
+                this.outcome.setText("YOU LOSE!!! The actual price is $" + this.carPrices[this.carIndex]);
             }
 
         }
