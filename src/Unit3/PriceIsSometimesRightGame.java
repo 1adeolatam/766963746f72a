@@ -22,7 +22,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     private JPanel midDicePanel;
     private JPanel botDicePanel;
     public Die[][] dice;
-    private String carPrice = "66666";
+
     private String[] carPrices = {
         "12345", "11111", "23333", "33333", "54213", "25234", "22223", "54321", "36542", "45333",
         "56555", "21354"
@@ -38,14 +38,15 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     private String discriminant = "";
     public JLabel outcome;
     public JPanel botpanel;
-    private int carIndex;
-    
+  
+       private int carIndex = (int) (Math.random() * carPrices.length);
+    private String carPrice = this.carPrices[carIndex];
     
     
     public PriceIsSometimesRightGame() {
         init();
-        this.carIndex = (int) (Math.random() * carPrices.length);
-        this.carPrice = this.carPrices[carIndex];
+
+      
     }
 
     public void init() {
