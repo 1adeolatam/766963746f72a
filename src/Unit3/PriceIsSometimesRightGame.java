@@ -38,15 +38,14 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     private String discriminant = "";
     public JLabel outcome;
     public JPanel botpanel;
-  
-       private int carIndex = (int) (Math.random() * carPrices.length);
+
+    private int carIndex = (int) (Math.random() * carPrices.length);
     private String carPrice = this.carPrices[carIndex];
-    
-    
+    private JButton playAgain = new JButton("Play Again ");
+
     public PriceIsSometimesRightGame() {
         init();
 
-      
     }
 
     public void init() {
@@ -81,9 +80,9 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         //1st digit of price
         this.leftrirst = new JPanel();
         this.leftrirst.setLayout(new BoxLayout(this.leftrirst, BoxLayout.PAGE_AXIS));
-        
-                this.botpanel = new JPanel();
-        
+
+        this.botpanel = new JPanel();
+
         // GENERATE DIE, put them in TOP/BOT Dice Panel
         this.dice = new Die[3][4];
         initDice();
@@ -91,13 +90,14 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         // TOP / BOT Dice Panel
         this.middlePanel.add(showedDice);
 
+        this.playAgain.addActionListener(this);
+
         // ADD ITEMS TO middlePanel
         this.add(middlePanel, BorderLayout.CENTER);
         this.add(new JLabel(), BorderLayout.PAGE_START);
         this.add(leftrirst, BorderLayout.LINE_START);
         this.add(new JLabel(), BorderLayout.LINE_END);
         this.add(botpanel, BorderLayout.PAGE_END);
-     
 
     }
 
@@ -106,7 +106,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         Dimension d = new Dimension(100, 100);
         Die firstNumber;
         JPanel firstpanel = new JPanel();
-       
+
         firstNumber = new Die((Integer.parseInt(carPrice.substring(0, 1))));
         firstNumber.setPreferredSize(d);
 
@@ -156,12 +156,11 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     }
 
     @Override
-    public void actionPerformed(ActionEvent e
-    ) {
+    public void actionPerformed(ActionEvent e) {
 
-        // BUTTON PRESSED!!
-        System.out.println("DO SOMETHING?");
-
+        this.add(this.playAgain);
+        this.setVisible(false);
+        new PriceIsSometimesRightGame().setVisible(true);
     }
 
     @Override
@@ -196,6 +195,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         }
 
         if (this.currentdice == 3) {
+
             if (this.discriminant.length() == 4) {
                 System.out.println("YOU WIN");
                 this.outcome.setText("YOU WIN!!! The actual price is $" + this.carPrices[this.carIndex]);
@@ -203,8 +203,9 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             } else {
                 System.out.println("YOU LOSE!!!!!!!!!!");
                 this.outcome.setText("YOU LOSE!!! The actual price is $" + this.carPrices[this.carIndex]);
-            }
 
+            }
+            this.add(this.playAgain,BorderLayout.LINE_END);
         }
         repaint();
 
