@@ -166,7 +166,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
     @Override
     public void mouseClicked(MouseEvent e
     ) {
-        System.out.println("Mouse Clicked on " + e.getComponent().getName());
+
 
         if (this.dice[1][this.currentdice].value == ((Integer.parseInt(carPrice.substring(1 + this.currentdice, 2 + this.currentdice))))) {
             this.dice[1][this.currentdice].setColour(Color.blue, Color.yellow);
@@ -174,7 +174,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             this.discriminant = this.discriminant + "s";
         } // Moves through the 4 dice
         else if (e.getComponent().getName().substring(0, 2).equalsIgnoreCase("0-")) {
-            System.out.println("Higher!");
+           
             this.dice[0][this.currentdice].setColour(Color.RED, Color.yellow);
 
             if (((Integer.parseInt(carPrice.substring(1 + this.currentdice, 2 + this.currentdice)))) > this.dice[1][this.currentdice].value) {
@@ -184,7 +184,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
 
         } else if (e.getComponent().getName().substring(0, 2).equalsIgnoreCase("2-")) {
 
-            System.out.println("Lower!");
+           
             this.dice[2][this.currentdice].setColour(Color.RED, Color.yellow);
 
             if (((Integer.parseInt(carPrice.substring(1 + this.currentdice, 2 + this.currentdice)))) < this.dice[1][this.currentdice].value) {
@@ -207,14 +207,14 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
             }
             this.add(this.playAgain,BorderLayout.LINE_END);
         }
-        repaint();
+      
 
-        System.out.println("Curret die" + this.currentdice);
+     
         this.currentdice++;
-        if (this.currentdice >= 0) {
+        if (this.currentdice <4) {
             this.dice[1][this.currentdice].setValue((int) ((Math.random() * 6) + 1));
         }
-
+  repaint();
     }
 
     @Override
