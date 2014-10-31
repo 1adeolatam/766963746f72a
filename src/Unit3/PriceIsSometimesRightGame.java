@@ -25,7 +25,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
 
     private String[] carPrices = {
         "12345", "11111", "23333", "33333", "54213", "25234", "22223", "54321", "36542", "45333",
-        "56555", "21354"
+        "56555", "21354","65666"
 
     };
 
@@ -171,7 +171,7 @@ public class PriceIsSometimesRightGame extends JFrame implements ActionListener,
         if (this.dice[1][this.currentdice].value == ((Integer.parseInt(carPrice.substring(1 + this.currentdice, 2 + this.currentdice))))) {
             this.dice[1][this.currentdice].setColour(Color.blue, Color.yellow);
 
-            this.discriminant = this.discriminant + "1";
+            this.discriminant = this.discriminant + "s";
         } // Moves through the 4 dice
         else if (e.getComponent().getName().substring(0, 2).equalsIgnoreCase("0-")) {
             System.out.println("Higher!");
