@@ -5,8 +5,8 @@
  */
 package Unit4;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,32 +17,34 @@ import javax.swing.JPanel;
  */
 public class Fractals extends JPanel {
 
-    JPanel panel;
-    int sidelength;
-    Color LineColor = Color.GREEN;
-    int[] point1,point2;
-    
-    
+    int xloc1, xloc2, yloc1, yloc2;
+    int n;
+    int sidelength = 100;
+
     public Fractals() {
-        // MAIN WINDOW; The Price is Righta
- 
-        panel = new JPanel();
-        // WINDOW; Border Layout
-        this.setLayout(new BorderLayout());
-        this.setSize(1000, 400);
-        this.add(panel);
+           Dimension d = new Dimension(600, 500);
+        this.setSize(d);
+        this.xloc1 = 100;
+        this.yloc1 = 400;
+        this.xloc2 = xloc1 + sidelength;
+        this.yloc2 = yloc2 + sidelength;
 
     }
-       @Override
-    protected void paintComponent(Graphics g) {
-        g.drawPolygon(this.point1, this.point2, 3);
+
+    public void drawL(Graphics g, int xloc1, int yloc1, int xloc2, int yloc2) {
         
+        g.fillRect(xloc1 , yloc1, sidelength, sidelength);
+        g.setColor(Color.white);
+        g.fillRect(xloc1 + (sidelength / 2), yloc1 + (sidelength / 2), sidelength/2, sidelength/2);
     }
-    
-    
 
-    public static void main(String[] args) {
-        new Fractals().setVisible(true);
+    @Override
+    protected void paintComponent(Graphics g) {
+        g.setColor(Color.black);
+        drawL(g, xloc1, yloc1, xloc2, yloc2);
+
     }
+
+    
 
 }
