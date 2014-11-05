@@ -17,54 +17,43 @@ import javax.swing.JPanel;
  */
 public class Fractals extends JPanel {
 
- 
     public Fractals() {
-      
-      
 
     }
 
     public void drawL(Graphics g, int xloc1, int yloc1) {
         g.setColor(Color.BLACK);
-        
+
         //g.fillRect(xloc1, yloc1, sidelength, sidelength);
         //g.setColor(Color.white);
         //g.fillRect(xloc1 + (sidelength / 2), yloc1, sidelength / 2, sidelength / 2);
-
     }
 
-    public void drawTriangle(Graphics g, int xloc, int yloc, int sideLength ) {
-        
-        if(sideLength > 1){
-            g.setColor(Color.RED);
-            g.drawLine(xloc, yloc, xloc, sideLength);
-            g.drawLine(xloc, sideLength, xloc + sideLength, sideLength);
-            g.drawLine(xloc,yloc, xloc+sideLength, yloc+sideLength);
+    public void drawTriangle(Graphics g, int xloc, int yloc, int sideLength) {
+        int radius = sideLength/9;
+           g.setColor(Color.RED);
+            g.fillOval((xloc + sideLength / 2) - 2*radius, (yloc + sideLength / 2)+radius , radius, radius);
+        if (sideLength > 1) {
+            g.setColor(Color.BLACK);
+            g.drawLine(xloc, yloc + sideLength, xloc + sideLength, yloc + sideLength);
+            g.drawLine(xloc, yloc, xloc, yloc + sideLength);
+            g.drawLine(xloc, yloc, xloc + sideLength, yloc + sideLength);
+         
 
-            drawTriangle( g, xloc, yloc, sideLength /2);
-            drawTriangle( g, xloc, yloc+sideLength/2, sideLength /2);
-            drawTriangle( g, xloc + sideLength/2, yloc+sideLength/2, sideLength/2 );
-        }//drawTriangle( g, xloc1, yloc1 + sideLength/2, sideLength/2 );
-            //drawTriangle( g, xloc1, yloc1, sideLength/2 );
-//            drawTriangle( g, xloc1, yloc1, sideLength/2 );
-//            drawTriangle( g, xloc1, yloc1, sideLength /2);
-     
+            drawTriangle(g, xloc, yloc, sideLength / 2);
+             drawTriangle(g, xloc, yloc + sideLength / 2, sideLength / 2);
+             drawTriangle(g, xloc + sideLength / 2, yloc + sideLength / 2, sideLength / 2);
+        }
 
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        
-        g.setColor(Color.black);
-        
-        drawTriangle( g, 0, 0, 400 );
 
-//        recursion(g, xloc1, yloc1);
-//        recursion(g, xloc1, yloc1 + 2 *sidelength);
-//        recursion(g, xloc1 + 2 * sidelength, yloc1 + 2 *sidelength);
-   
-           
+        g.setColor(Color.black);
+
+        drawTriangle(g, 0, 0, 1000);
+
     }
-    
 
 }
