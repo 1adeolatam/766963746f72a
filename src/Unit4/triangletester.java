@@ -13,32 +13,25 @@ import javax.swing.JFrame;
  *
  * @author 1adeolatam
  */
-public class triangletester extends JFrame{
+public class triangletester extends JFrame {
 
-Fractals fractal = new Fractals();
-Dimension d = new Dimension(800, 600);
+    Fractals fractal = new Fractals();
+    Dimension d = new Dimension(800, 600);
+
     public triangletester() throws HeadlessException {
-   
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
-        
+
         this.setSize(d);
         this.setPreferredSize(d);
-        this.add(fractal);       
-         this.setVisible(true);
+        this.add(fractal);
+        this.setVisible(true);
     }
 
-
-
-
-
-    
-    
-    
     public static void main(String[] args) {
-       
-       triangletester test = new triangletester();
-       
+
+        triangletester test = new triangletester();
+
     }
-    
+
 }
