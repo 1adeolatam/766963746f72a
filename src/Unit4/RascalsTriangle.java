@@ -11,8 +11,9 @@ package Unit4;
  */
 public class RascalsTriangle {
 
-    static int[][] pascalstriangle;
-    
+
+   static int row = 10;
+      int[row][row+1] pascalstriangle = new ;
     
     public static int term( int row, int col ){
         
