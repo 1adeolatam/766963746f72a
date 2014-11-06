@@ -20,9 +20,20 @@ public class RecursiveFunctions {
             return -1 * functionwon(y, x);
         }
 
-       
-            return 1 + functionwon(x - 1, y);
+        return 1 + functionwon(x - 1, y);
+
+    }
+
+    public static int functiontwo(int m, int n) {
+        if (m == 0) {
+            return n + 1;
+        }
+        if (m > 0 && n == 0) {
+            return functiontwo(m - 1, 1);
+        } 
+            return functiontwo(m - 1, functiontwo(m, n - 1));
         
+
     }
 
     public static void main(String[] args) {
@@ -31,8 +42,12 @@ public class RecursiveFunctions {
         System.out.println(functionwon(2, 2));
         System.out.println(functionwon(1, 4));
         System.out.println(functionwon(-5, -2));
-        
-        
+
+        System.out.println("ACKERMAN");
+        System.out.println(functiontwo(1, 1));
+        System.out.println(functiontwo(2, 1));
+        System.out.println(functiontwo(5, 5));
+
     }
 
 }
