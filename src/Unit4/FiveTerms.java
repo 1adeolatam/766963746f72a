@@ -32,7 +32,7 @@ public class FiveTerms {
             return 2;
         }
 
-        return Math.sqrt(3 * (n - 1) + 4);
+        return Math.sqrt(3 * secondSequence(n - 1) + 4);
 
     }
 
@@ -43,7 +43,7 @@ public class FiveTerms {
             System.out.println(termFinder(i));
         }
 
-        for (int i = 1; i < 50; i++) {
+        for (int i = 1; i < 6; i++) {
             System.out.printf("\n%1$.2f", secondSequence(i));
 
         }

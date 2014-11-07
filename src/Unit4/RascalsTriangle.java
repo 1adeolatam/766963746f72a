@@ -11,25 +11,31 @@ package Unit4;
  */
 public class RascalsTriangle {
 
+    //Assumes that the first rows index is 1 not 0
+    public static int term(int row, int col) {
+        if (row == 1 || col == 1 || row == col) {
+            return 1;
+        }
+        
+        return term(row - 1, col - 1) + term(row - 1, col);
 
-   static int row = 10;
-      int[row][row+1] pascalstriangle = new ;
-    
-    public static int term( int row, int col ){
-        
-    return pascalstriangle[row][col];
     }
-    
-    public static int pascalsTriangle( int row ){
-        
-        
+
+    public static void pascalsTriangle(int row) {
+
+        for (int r = 1; r < row; r++) {
+            for (int c = 1; c < r; c++) {
+                System.out.print(term(r, c) + " ");
+            }
+            System.out.println();
+        }
+
     }
-    
-    
+
     public static void main(String[] args) {
 
-        
-        
+        //System.out.println(term(4,2));
+        pascalsTriangle(7);
     }
-    
+
 }
