@@ -35,7 +35,7 @@ public class LetMeOut {
             successful = true;
 
         } else {
-            maze[row][col] = '-';
+            maze[row][col] = TRIED;
 
             //Left
             if (maze[row][col - 1] == OPEN) {
