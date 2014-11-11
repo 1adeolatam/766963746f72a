@@ -55,7 +55,7 @@ public class LetMeOut {
             //UP
             if (!successful && maze[row - 1][col] == OPEN || maze[row - 1][col] == EXIT) {
                 successful = findExitFrom(row - 1, col);
-            }
+            } 
         }
 
         if (successful) {
