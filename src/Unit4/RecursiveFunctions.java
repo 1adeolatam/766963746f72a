@@ -6,11 +6,14 @@
 package Unit4;
 
 /**
- *
+ * * Name: Tami Adeola 
+ * Version: 1.0 
+ * Date: Monday, November 10th, 2014 
+ * Purpose: Display results of predetermined functions
  * @author 1adeolatam
  */
 public class RecursiveFunctions {
-
+// First function
     public static int functionwon(int x, int y) {
         if (x == y) {
             return 0;
@@ -24,6 +27,7 @@ public class RecursiveFunctions {
 
     }
 
+    //Ackerman's function
     public static int functiontwo(int m, int n) {
         if (m == 0) {
             return n + 1;

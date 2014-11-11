@@ -1,12 +1,15 @@
 /*
- * Name:            Let Me Out
- * Date:            Nov, 2014
+ * * Name: Tami Adeola 
+ * Version: 1.0 
+ * Date: Monday, November 10th, 2014 
+ * Purpose: 4
  */
 package Unit4;
 
 /**
  */
 public class LetMeOut {
+//class constants
 
     private static final char WALL = 'W';
     private static final char EXIT = 'X';
@@ -36,7 +39,7 @@ public class LetMeOut {
 
         } else {
             maze[row][col] = TRIED;
-
+// ALgorithm for finding an exit
             //Left
             if (maze[row][col - 1] == OPEN) {
                 successful = findExitFrom(row, col - 1);

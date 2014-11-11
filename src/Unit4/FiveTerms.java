@@ -6,7 +6,10 @@
 package Unit4;
 
 /**
- *
+ * Name: Tami Adeola 
+ * Version: 1.0 
+ * Date: Monday, November 10th, 2014 
+ * Purpose: The evaluation of terms given specific recursive functions
  * @author 1adeolatam
  */
 public class FiveTerms {
@@ -14,6 +17,7 @@ public class FiveTerms {
     //Sequence 1
     public static int termFinder(int n) {
 
+        //fulfilling requirements of function
         if (n == 2) {
             return 3;
         }
@@ -37,8 +41,8 @@ public class FiveTerms {
     }
 
     public static void main(String[] args) {
-
-        for (int i = 1; i < 10; i++) {
+// displays terms of the arithmetic
+        for (int i = 1; i < 5; i++) {
 
             System.out.println(termFinder(i));
         }

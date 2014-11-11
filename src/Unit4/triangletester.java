@@ -32,6 +32,7 @@ public class triangletester extends JFrame {
 
         triangletester test = new triangletester();
 
+        Fractals lee = new Fractals();
     }
 
 }
