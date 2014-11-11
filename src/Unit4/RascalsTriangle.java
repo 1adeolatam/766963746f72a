@@ -9,7 +9,7 @@ package Unit4;
  *  * Name: Tami Adeola 
  * Version: 1.0 
  * Date: Monday, November 10th, 2014 
- * Purpose: 
+ * Purpose: Print out pascal's Triangle
  *
  * @author 1adeolatam
  */
@@ -38,7 +38,7 @@ public class RascalsTriangle {
 
     public static void main(String[] args) {
 
-        //System.out.println(term(4,2));
+        System.out.println(term(4,2));
         pascalsTriangle(7);
     }
 

@@ -2,7 +2,7 @@
  * * Name: Tami Adeola 
  * Version: 1.0 
  * Date: Monday, November 10th, 2014 
- * Purpose: 4
+ * Purpose: Find a way out a maze array
  */
 package Unit4;
 
@@ -55,7 +55,7 @@ public class LetMeOut {
             //UP
             if (!successful && maze[row - 1][col] == OPEN || maze[row - 1][col] == EXIT) {
                 successful = findExitFrom(row - 1, col);
-            } 
+            }
         }
 
         if (successful) {
