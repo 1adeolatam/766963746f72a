@@ -12,7 +12,7 @@ import java.io.*;
  * @author 1adeolatam
  */
 public class MartialArtsStore {
-
+ 
     public static void main(String[] args) throws Exception {
 
         MartialArts Tk = new MartialArts("Taekwando", 10, true, 'B', "hi");
