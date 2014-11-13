@@ -30,9 +30,7 @@ public abstract class PacmanCharacter implements Movement {
 
     //Constructors
     public PacmanCharacter() {
-        if(PacmanCharacter == null){
-            System.out.println("NO null objects allowed");
-        }
+
     }
 
     public PacmanCharacter(Console hsaConsole) {
