@@ -12,9 +12,10 @@ package Unit5;
 public class MartialArts {
 
     protected static int RECORD_SIZE = 51;
-    private static int NAME_SIZE = 20;
-    private static int FOUNDER_SIZE = 20;
+    protected static int NAME_SIZE = 20;
+    protected static int FOUNDER_SIZE = 20;
 
+    long fileRecordID;
     String founder;
     String name;
     int numberOfpractitioners;
@@ -27,16 +28,26 @@ public class MartialArts {
         sethighestLevelcolor('z');
         setfounder(null);
         setFullContact(false);
+        fileRecordID = -1;
 
     }
 
     public MartialArts(String founder, String name, int numberOfpractitioners, int numberOflevels, boolean fullContact, char highestLevelcolor) {
+        fileRecordID = -1;
         this.founder = founder;
         this.name = name;
         this.numberOfpractitioners = numberOfpractitioners;
         this.numberOflevels = numberOflevels;
         this.fullContact = fullContact;
         this.highestLevelcolor = highestLevelcolor;
+    }
+
+    public long getFileRecordID() {
+        return fileRecordID;
+    }
+
+    public void setFileRecordID(long fileRecordID) {
+        this.fileRecordID = fileRecordID;
     }
 
  
