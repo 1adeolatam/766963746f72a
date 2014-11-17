@@ -11,98 +11,101 @@ package Unit5;
  */
 public class MartialArts {
 
-    private static int RECORD_SIZE = 58;
+    protected static int RECORD_SIZE = 51;
     private static int NAME_SIZE = 20;
     private static int FOUNDER_SIZE = 20;
 
-    String Founder;
-    String Name;
-    int NumberOfPractitioners;
-    int NumberOfLevels;
+    String founder;
+    String name;
+    int numberOfpractitioners;
+    int numberOflevels;
     boolean fullContact;
-    char HighestLevelColor;
+    char highestLevelcolor;
 
     public MartialArts() {
-        setName(null);
-        setHighestLevelColor('z');
-        setFounder(null);
+        setname(null);
+        sethighestLevelcolor('z');
+        setfounder(null);
         setFullContact(false);
 
     }
 
-    public MartialArts(String Name, int NumberOfLevels, boolean fullContact, char HighestLevelColor, String Founder) {
-            setName(Name);
-        setHighestLevelColor(HighestLevelColor);
-        setFounder(Founder);
-        setFullContact(fullContact);
-        
+    public MartialArts(String founder, String name, int numberOfpractitioners, int numberOflevels, boolean fullContact, char highestLevelcolor) {
+        this.founder = founder;
+        this.name = name;
+        this.numberOfpractitioners = numberOfpractitioners;
+        this.numberOflevels = numberOflevels;
+        this.fullContact = fullContact;
+        this.highestLevelcolor = highestLevelcolor;
     }
 
-    public void setFounder(String Founder) {
-        if (Founder != null) {
-            StringBuilder temp = new StringBuilder(Founder.trim());
+ 
+
+    public void setfounder(String founder) {
+        if (founder != null) {
+            StringBuilder temp = new StringBuilder(founder.trim());
             temp.setLength(FOUNDER_SIZE);
 
-            this.Founder = temp.toString();
+            this.founder = temp.toString();
         } else {
 
-            this.Founder = "     TBD            ";
+            this.founder = "     TBD            ";
 
         }
 
     }
 
-    public void setName(String Name) {
-        if (Name != null) {
-            StringBuilder temp = new StringBuilder(Name.trim());
+    public void setname(String name) {
+        if (name != null) {
+            StringBuilder temp = new StringBuilder(name.trim());
             temp.setLength(NAME_SIZE);
 
-            this.Name = temp.toString();
+            this.name = temp.toString();
         } else {
 
-            this.Name = "     TBD            ";
+            this.name = "     TBD            ";
 
         }
     }
 
-    public void setNumberOfLevels(int NumberOfLevels) {
-        this.NumberOfLevels = NumberOfLevels;
+    public void setnumberOflevels(int numberOflevels) {
+        this.numberOflevels = numberOflevels;
     }
 
     public void setFullContact(boolean fullContact) {
         this.fullContact = fullContact;
     }
 
-    public void setHighestLevelColor(char HighestLevelColor) {
-        this.HighestLevelColor = HighestLevelColor;
+    public void sethighestLevelcolor(char highestLevelcolor) {
+        this.highestLevelcolor = highestLevelcolor;
     }
 
-    public String getFounder() {
-        return Founder;
+    public String getfounder() {
+        return founder;
     }
 
-    public String getName() {
-        return Name;
+    public String getname() {
+        return name;
     }
 
-    public int getNumberOfLevels() {
-        return NumberOfLevels;
+    public int getnumberOflevels() {
+        return numberOflevels;
     }
 
     public boolean isFullContact() {
         return fullContact;
     }
 
-    public char getHighestLevelColor() {
-        return HighestLevelColor;
+    public char gethighestLevelcolor() {
+        return highestLevelcolor;
     }
 
-    public int getNumberOfPractitioners() {
-        return NumberOfPractitioners;
+    public int getnumberOfpractitioners() {
+        return numberOfpractitioners;
     }
 
-    public void setNumberOfPractitioners(int NumberOfPractitioners) {
-        this.NumberOfPractitioners = NumberOfPractitioners;
+    public void setnumberOfpractitioners(int numberOfpractitioners) {
+        this.numberOfpractitioners = numberOfpractitioners;
     }
 
     public static void main(String[] args) {

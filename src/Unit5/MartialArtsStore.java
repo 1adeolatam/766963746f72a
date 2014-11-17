@@ -13,31 +13,33 @@ import java.io.*;
  */
 public class MartialArtsStore {
 
-    int size;
+    int latestIndex = 0;
 
     public void openstore(RandomAccessFile file) throws FileNotFoundException {
-       
+        RandomAccessFile recordFile = new RandomAccessFile("MartialArts.txt", "rw");
+        System.out.println(" WHALECOME TO THE MA STORE");
 
     }
 
-    public void write(){
-        
-    }
-    
-    public void add(MartialArts MA, RandomAccessFile file) {
+    public void write() {
 
-        size++;
+    }
+
+    public void add(MartialArts MA, RandomAccessFile file) throws IOException {
+        file.seek(file.length());
+        file.writeChars(MA.getfounder());
+        file.writeChars(MA.getname());
+        file.writeInt(MA.getnumberOfpractitioners());
+        file.writeInt(MA.getnumberOflevels());
+        file.writeBoolean(MA.isFullContact());
+        file.writeChar(MA.gethighestLevelcolor());
+
+        latestIndex = latestIndex + 51;
     }
 
     public static void main(String[] args) throws Exception {
 
-        MartialArts Tk = new MartialArts("blah bergrerserrrtrtrsrtslah", "Taekwando",21, 10, true, 'r');
-
-         RandomAccessFile recordFile = new RandomAccessFile("MartialArts.txt", "rw");
-        recordFile.seek(0);
-        recordFile.writeChars(Tk.getName());
-        recordFile.writeChars(Tk.getFounder());
-        recordFile.writeInt(Tk.getNumberOfPractitioners());
+        MartialArts Tk = new MartialArts("Takewando", "asadadasdawd", 21, 3, true, 'r');
 
         System.out.println("HI");
     }
