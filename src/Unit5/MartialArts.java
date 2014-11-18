@@ -11,7 +11,7 @@ package Unit5;
  */
 public class MartialArts {
 
-    protected static int RECORD_SIZE = 51;
+    protected static int RECORD_SIZE = 91;
     protected static int NAME_SIZE = 20;
     protected static int FOUNDER_SIZE = 20;
 

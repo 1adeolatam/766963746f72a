@@ -28,22 +28,26 @@ public class MartialArtsStore {
     public void openstore() throws FileNotFoundException, IOException {
 
         System.out.println(" WHALECOME TO THE MA STORE");
-
+        System.out.println("There are " + (recordFile.length() / MartialArts.RECORD_SIZE) + " records in this store");
         System.out.println("~~~~~~~MENU~~~~~~~~");
         System.out.println("1. Display Store");
         System.out.println("2. Add Record");
-        System.out.println("3. Delete Record ");
-        switch (input.nextInt()) {
+        System.out.println("3. Edit Record ");
+        System.out.println("4.");
+        System.out.println("5. LEAVE STORE");
+        switch (Integer.parseInt(input.nextLine())) {
             case 1:
                 System.out.println("Please enter -1 to view all the records or enter a specific record to view it");
-                int IDNUMBER = input.nextInt();
-                if (IDNUMBER >= 0) {
+                int IDNUMBER = Integer.parseInt(input.nextLine());
+                if (IDNUMBER > -1) {
                     display(IDNUMBER);
                 } else {
                     for (int i = 0; i < numRecords; i++) {
                         display(i);
                     }
                 }
+                openstore();
+
                 break;
 
             case 2:
@@ -51,39 +55,52 @@ public class MartialArtsStore {
                 System.out.println("You are now adding a record\n Instructions: ");
 
                 System.out.println("Please enter the founder's name");
-                MA.setfounder(input.next());
+                MA.setfounder(input.nextLine());
 
                 System.out.println("Please enter the Name of the art");
                 MA.setname(input.nextLine());
 
                 System.out.println("Please enter the Number of practicioners");
-                MA.setnumberOfpractitioners(input.nextInt());
+                MA.setnumberOfpractitioners(Integer.parseInt(input.nextLine()));
 
                 System.out.println("Please enter the Number of levels");
-                MA.setnumberOflevels(input.nextInt());
+                MA.setnumberOflevels(Integer.parseInt(input.nextLine()));
 
                 System.out.println("Please enter true if it is full contact or false if it is not");
-                MA.setFullContact(input.nextBoolean());
+                MA.setFullContact(Boolean.parseBoolean(input.nextLine()));
 
                 System.out.println("Please enter the first letter of the highest belt colour");
-                MA.sethighestLevelcolor(input.nextLine().charAt(0));
+                MA.sethighestLevelcolor(input.nextLine().trim().charAt(0));
 
-                write(MA);
+                MA = add(MA);
+                openstore();
                 break;
             case 3:
-                System.out.println("Please enter the ID of the record you would like to delete");
-                position = input.nextLong() * MartialArts.RECORD_SIZE;
-                recordFile.seek(position);
-                // pls do
+                // EDIT
+
+                openstore();
+                break;
+            case 4:
+
+                openstore();
+                break;
+            case 5:
+                System.out.println("Thank you for visiting go fight someone");
+
+                break;
+            default:
+                System.out.println("PLease eneter a valid entry");
+                openstore();
                 break;
         }
 
     }
 
-    public void write(MartialArts MA) throws IOException {
+    public MartialArts write(MartialArts MA) throws IOException {
 
         if (MA.getFileRecordID() < 0) {
             recordFile.seek(recordFile.length());
+            MA.setFileRecordID(recordFile.length() / MartialArts.RECORD_SIZE);
         } else {
             recordFile.seek(MA.getFileRecordID() * MartialArts.RECORD_SIZE);
         }
@@ -94,7 +111,8 @@ public class MartialArtsStore {
         recordFile.writeInt(MA.getnumberOflevels());
         recordFile.writeBoolean(MA.isFullContact());
         recordFile.writeChar(MA.gethighestLevelcolor());
-        ;
+
+        return MA;
 
     }
 
@@ -118,8 +136,8 @@ public class MartialArtsStore {
                 Name[i] = recordFile.readChar();
             }
             ma.setname(new String(Name));
-            // getting Number of practitioners and levels
 
+            // getting Number of practitioners and levels
             ma.setnumberOfpractitioners(recordFile.readInt());
             ma.setnumberOflevels(recordFile.readInt());
 
@@ -140,26 +158,30 @@ public class MartialArtsStore {
         for (int i = 0; i < MartialArts.FOUNDER_SIZE; i++) {
             Founder[i] = recordFile.readChar();
         }
-        System.out.println("Founder " + new String(Founder));
+        System.out.println("Founder: " + new String(Founder));
 
         char Name[] = new char[MartialArts.NAME_SIZE];
         for (int i = 0; i < MartialArts.NAME_SIZE; i++) {
             Name[i] = recordFile.readChar();
         }
-        System.out.println("NAME " + new String(Name));
+        System.out.println("NAME: " + new String(Name));
 
-        System.out.println("Number of Practictioners " + recordFile.readInt());
+        System.out.println("Number of Practictioners: " + recordFile.readInt());
 
-        System.out.println("Number of Levels " + recordFile.readInt());
+        System.out.println("Number of Levels: " + recordFile.readInt());
         System.out.println("Is it full contact ?: " + recordFile.readBoolean());
 
-        System.out.println("First Letter of Highest color" + recordFile.readChar());
+        System.out.println("First Letter of Highest color: " + recordFile.readChar());
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
     }
 
-    public void add(MartialArts MA) throws IOException {
-        recordFile.seek(recordFile.length());
-        write(MA);
+    public MartialArts add(MartialArts MA) throws IOException {
+        return write(MA);
+
+    }
+
+    public void find() {
 
     }
 
