@@ -119,8 +119,12 @@ public class MartialArts {
         this.numberOfpractitioners = numberOfpractitioners;
     }
 
-    public static void main(String[] args) {
-
+    @Override
+    public String toString() {
+        return "MartialArts{" + "fileRecordID=" + fileRecordID + ", founder=" + founder + ", name=" + name + ", numberOfpractitioners=" + numberOfpractitioners + ", numberOflevels=" + numberOflevels + ", fullContact=" + fullContact + ", highestLevelcolor=" + highestLevelcolor + '}';
     }
+
+  
+    
 
 }
