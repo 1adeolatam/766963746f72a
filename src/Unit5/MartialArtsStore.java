@@ -76,8 +76,66 @@ public class MartialArtsStore {
                 openstore();
                 break;
             case 3:
-                // EDIT
+                // EDIT Existing MARTIAL ART
+                MartialArts Ma = new MartialArts();
+                int IDchoice;
 
+             
+                System.out.println("Please enter the id of the martial art you would like to edit.");
+                IDchoice = Integer.parseInt(input.nextLine());
+                
+                   if(IDchoice <= numRecords && IDchoice > -1){
+                
+                Ma.setFileRecordID(IDchoice);
+                recordFile.seek(IDchoice * MartialArts.RECORD_SIZE);
+
+                // Update Founder Name
+                System.out.println("Enter [new Founder] or [k]eep current Founder: ");
+                String founder = input.nextLine();
+
+                if (!"k".equals(founder)) {
+                    Ma.setfounder(founder);
+                }
+                // Update  Name
+                System.out.println("Enter [new Martial art name] or [k]eep current name: ");
+                String name = input.nextLine();
+
+                if (!"k".equals(name)) {
+                    Ma.setname(name);
+                }
+                // UPdate # of practicioners
+                System.out.println("Enter new number of practicioners or [k]eep the current amount");
+                String numberofpractioners = input.nextLine();
+
+                if (!"k".equals(numberofpractioners)) {
+                    Ma.setnumberOfpractitioners(Integer.parseInt(numberofpractioners));
+                }
+                // UPdate # of levels
+                System.out.println("Enter new number of Levels or [k]eep the current amount");
+                String numberoflvl = input.nextLine();
+
+                if (!"k".equals(numberoflvl)) {
+                    Ma.setnumberOflevels(Integer.parseInt(numberoflvl));
+                }
+
+                // Update full contactness
+                System.out.println("please enter 1 if you would like to change this martial art's full contactness, enter anything else to leave it the way it is");
+                String chaningboolean = input.nextLine();
+                if ("1".equals(chaningboolean)) {
+                    Ma.setFullContact(!Ma.isFullContact());
+                }
+                //UPDATE HIGHEST COLOR
+                System.out.println("Enter new color of highest attainable belt of the art or [z]to keep the current color");
+                char highestdan = input.nextLine().trim().charAt(0);
+
+                if (highestdan != 'z') {
+                    Ma.sethighestLevelcolor(highestdan);
+                }
+                Ma.setFileRecordID(IDchoice);
+                write(Ma);
+                   }else{
+                       System.out.println("Please enter a valid object ID. FIRST Object is id 0");
+                   }
                 openstore();
                 break;
             case 4:
@@ -154,6 +212,7 @@ public class MartialArtsStore {
     public void display(int IDNUMBER) throws IOException {
         position = MartialArts.RECORD_SIZE * (IDNUMBER);
         recordFile.seek(position);
+        System.out.println("FILE ID NUMBER" + IDNUMBER);
         char Founder[] = new char[MartialArts.FOUNDER_SIZE];
         for (int i = 0; i < MartialArts.FOUNDER_SIZE; i++) {
             Founder[i] = recordFile.readChar();
@@ -164,6 +223,7 @@ public class MartialArtsStore {
         for (int i = 0; i < MartialArts.NAME_SIZE; i++) {
             Name[i] = recordFile.readChar();
         }
+
         System.out.println("NAME: " + new String(Name));
 
         System.out.println("Number of Practictioners: " + recordFile.readInt());
