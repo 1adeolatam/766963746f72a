@@ -33,8 +33,7 @@ public class MartialArtsStore {
         System.out.println("1. Display Store");
         System.out.println("2. Add Record");
         System.out.println("3. Edit Record ");
-        System.out.println("4.");
-        System.out.println("5. LEAVE STORE");
+        System.out.println("4. LEAVE STORE");
         switch (Integer.parseInt(input.nextLine())) {
             case 1:
                 System.out.println("Please enter -1 to view all the records or enter a specific record to view it");
@@ -80,69 +79,65 @@ public class MartialArtsStore {
                 MartialArts Ma = new MartialArts();
                 int IDchoice;
 
-             
                 System.out.println("Please enter the id of the martial art you would like to edit.");
                 IDchoice = Integer.parseInt(input.nextLine());
-                
-                   if(IDchoice <= numRecords && IDchoice > -1){
-                
-                Ma.setFileRecordID(IDchoice);
-                recordFile.seek(IDchoice * MartialArts.RECORD_SIZE);
 
-                // Update Founder Name
-                System.out.println("Enter [new Founder] or [k]eep current Founder: ");
-                String founder = input.nextLine();
+                if (IDchoice <= numRecords && IDchoice > -1) {
 
-                if (!"k".equals(founder)) {
-                    Ma.setfounder(founder);
+                    Ma.setFileRecordID(IDchoice);
+                    recordFile.seek(IDchoice * MartialArts.RECORD_SIZE);
+
+                    // Update Founder Name
+                    System.out.println("Enter [new Founder] or [k]eep current Founder: ");
+                    String founder = input.nextLine();
+
+                    if (!"k".equals(founder)) {
+                        Ma.setfounder(founder);
+                    }
+                    // Update  Name
+                    System.out.println("Enter [new Martial art name] or [k]eep current name: ");
+                    String name = input.nextLine();
+
+                    if (!"k".equals(name)) {
+                        Ma.setname(name);
+                    }
+                    // UPdate # of practicioners
+                    System.out.println("Enter new number of practicioners or [k]eep the current amount");
+                    String numberofpractioners = input.nextLine();
+
+                    if (!"k".equals(numberofpractioners)) {
+                        Ma.setnumberOfpractitioners(Integer.parseInt(numberofpractioners));
+                    }
+                    // UPdate # of levels
+                    System.out.println("Enter new number of Levels or [k]eep the current amount");
+                    String numberoflvl = input.nextLine();
+
+                    if (!"k".equals(numberoflvl)) {
+                        Ma.setnumberOflevels(Integer.parseInt(numberoflvl));
+                    }
+
+                    // Update full contactness
+                    System.out.println("please enter 1 if you would like to change this martial art's full contactness, enter anything else to leave it the way it is");
+                    String chaningboolean = input.nextLine();
+                    if ("1".equals(chaningboolean)) {
+                        Ma.setFullContact(!Ma.isFullContact());
+                    }
+                    //UPDATE HIGHEST COLOR
+                    System.out.println("Enter new color of highest attainable belt of the art or [z]to keep the current color");
+                    char highestdan = input.nextLine().trim().charAt(0);
+
+                    if (highestdan != 'z') {
+                        Ma.sethighestLevelcolor(highestdan);
+                    }
+                    Ma.setFileRecordID(IDchoice);
+                    write(Ma);
+                } else {
+                    System.out.println("Please enter a valid object ID. FIRST Object is id 0");
                 }
-                // Update  Name
-                System.out.println("Enter [new Martial art name] or [k]eep current name: ");
-                String name = input.nextLine();
-
-                if (!"k".equals(name)) {
-                    Ma.setname(name);
-                }
-                // UPdate # of practicioners
-                System.out.println("Enter new number of practicioners or [k]eep the current amount");
-                String numberofpractioners = input.nextLine();
-
-                if (!"k".equals(numberofpractioners)) {
-                    Ma.setnumberOfpractitioners(Integer.parseInt(numberofpractioners));
-                }
-                // UPdate # of levels
-                System.out.println("Enter new number of Levels or [k]eep the current amount");
-                String numberoflvl = input.nextLine();
-
-                if (!"k".equals(numberoflvl)) {
-                    Ma.setnumberOflevels(Integer.parseInt(numberoflvl));
-                }
-
-                // Update full contactness
-                System.out.println("please enter 1 if you would like to change this martial art's full contactness, enter anything else to leave it the way it is");
-                String chaningboolean = input.nextLine();
-                if ("1".equals(chaningboolean)) {
-                    Ma.setFullContact(!Ma.isFullContact());
-                }
-                //UPDATE HIGHEST COLOR
-                System.out.println("Enter new color of highest attainable belt of the art or [z]to keep the current color");
-                char highestdan = input.nextLine().trim().charAt(0);
-
-                if (highestdan != 'z') {
-                    Ma.sethighestLevelcolor(highestdan);
-                }
-                Ma.setFileRecordID(IDchoice);
-                write(Ma);
-                   }else{
-                       System.out.println("Please enter a valid object ID. FIRST Object is id 0");
-                   }
                 openstore();
                 break;
+
             case 4:
-
-                openstore();
-                break;
-            case 5:
                 System.out.println("Thank you for visiting go fight someone");
 
                 break;
