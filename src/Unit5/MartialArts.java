@@ -11,6 +11,7 @@ package Unit5;
  */
 public class MartialArts {
 
+    // Class constants
     protected static int RECORD_SIZE = 91;
     protected static int NAME_SIZE = 20;
     protected static int FOUNDER_SIZE = 20;
@@ -34,12 +35,12 @@ public class MartialArts {
 
     public MartialArts(String founder, String name, int numberOfpractitioners, int numberOflevels, boolean fullContact, char highestLevelcolor) {
         fileRecordID = -1;
-        this.founder = founder;
-        this.name = name;
-        this.numberOfpractitioners = numberOfpractitioners;
-        this.numberOflevels = numberOflevels;
-        this.fullContact = fullContact;
-        this.highestLevelcolor = highestLevelcolor;
+        setfounder(founder);
+        setname(name);
+        setnumberOfpractitioners(numberOfpractitioners);
+        setnumberOflevels(numberOflevels);
+        setFullContact(fullContact);
+        sethighestLevelcolor(highestLevelcolor);
     }
 
     public long getFileRecordID() {
