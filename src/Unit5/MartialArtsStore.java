@@ -59,7 +59,11 @@ public class MartialArtsStore {
                             System.err.println("Please enter a valid integer.");
                         }
                     }
-                    if (IDNUMBER >= -1) {
+                    if(IDNUMBER >= numRecords){
+                        System.out.println("Please enter a valid record index.");
+                        openstore();
+                    }
+                    if (IDNUMBER > -1 ) {
                         display(IDNUMBER);
                     } else {
                         for (int i = 0; i < numRecords; i++) {
@@ -68,7 +72,7 @@ public class MartialArtsStore {
                     }
                 } else {
                     System.err.println("FILE HAS NO RECORDS");
-                    System.err.println("MENU ");
+                  
                 }
 
                 openstore();
@@ -87,11 +91,12 @@ public class MartialArtsStore {
                 break;
 
             case 4:
+                  recordFile.close();
                 System.out.println("Thank you for visiting go fight someone");
-                recordFile.close();
+              
 
                 break;
-            default:
+           default:
                 System.out.println("PLease eneter a valid entry");
                 openstore();
                 break;
@@ -137,17 +142,21 @@ public class MartialArtsStore {
         
         if(recordFile.length() > 0){
         
-        int IDchoice;
+        int IDchoice = -2;
         System.out.println("Please enter the id of the martial art you would like to edit.");
+        try{
         IDchoice = Integer.parseInt(input.nextLine());
-
-        if (IDchoice <= numRecords && IDchoice > -1) {
+        }
+        catch(Exception e){
+            System.err.println("PLease enter a valid id number");
+        }
+        if (IDchoice < numRecords && IDchoice > -1) {
             MartialArts Ma = new MartialArts();
             Ma.setFileRecordID(IDchoice);
             recordFile.seek(IDchoice * MartialArts.RECORD_SIZE);
 
             Ma = read(IDchoice);
-
+  try{
             // Update Founder Name
             System.out.println("Enter [new Founder] or  press k to leave the name the same  ");
             String founder = input.nextLine();
@@ -191,6 +200,13 @@ public class MartialArtsStore {
                 Ma.sethighestLevelcolor(highestdan);
             }
             Ma.setFileRecordID(IDchoice);
+                }
+        catch(Exception e){
+            
+            System.err.println("PLEASE INPUT CORRECT DATA TYPES.");
+           
+            openstore();
+        }
             write(Ma);
         } else {
             System.out.println("Please enter a valid object ID. FIRST Object is id 0");
