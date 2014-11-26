@@ -20,15 +20,15 @@ public class Stack implements StackInterface {
     int length;
 
     public Stack(int size) {
-        Array = new int[size];
-        length = size;
-        top = -1;
+        this.Array = new int[size];
+        this.length = size;
+        this.top = -1;
     }
 
     @Override
     public int top() {
         if (!isEmpty()) {
-            return Array[top];
+            return this.Array[top];
         } else {
             System.err.println("CANT TOP THE BOP because STACK is EMPTY");    
         }
@@ -38,8 +38,8 @@ public class Stack implements StackInterface {
     @Override
     public int pop() {
         if (!isEmpty()) {
-            int popped = Array[top];
-            top--;
+            int popped = this.Array[top];
+            this.top--;
             return popped;
 
         } else {
@@ -51,9 +51,9 @@ public class Stack implements StackInterface {
     @Override
     public void push(int num) {
         if (!isFull()) {
-            top++;
+            this.top++;
 
-            Array[top] = num;
+            this.Array[top] = num;
         } else {
             System.err.println("FULL Can't push ");
         }
@@ -61,13 +61,13 @@ public class Stack implements StackInterface {
 
     @Override
     public int size() {
-        return top + 1;
+        return this.top + 1;
 
     }
 
     @Override
     public boolean isEmpty() {
-        if (top == -1) {
+        if (this.top == -1) {
             return true;
         }
 
@@ -77,7 +77,7 @@ public class Stack implements StackInterface {
 
     @Override
     public boolean isFull() {
-        if (top == length - 1) {
+        if (this.top == this.length - 1) {
             return true;
         }
         return false;
@@ -85,11 +85,11 @@ public class Stack implements StackInterface {
 
     @Override
     public void makeEmpty() {
-        top = -1;
+        this.top = -1;
     }
 
     public void makeFull(){
-        top = length -1;
+        this.top = this.length -1;
     }
     public static void main(String[] args) {
         Stack Stock = new Stack(21);
