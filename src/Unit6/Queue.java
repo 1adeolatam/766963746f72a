@@ -17,14 +17,13 @@ public class Queue  {
     protected static int back;
     int length;
 
-   protected int actualfront;
-    protected int actualback;
+
     
     public Queue(int length) {
         this.length = length;
         this.Array = new int[length];
-        this.actualfront = -1;
-        this.actualback = -1;
+        this.front = -1;
+        this.back = -1;
     }
 
 
@@ -34,16 +33,16 @@ public class Queue  {
             this.back = 0;
         }
         if (isFull()) {
-            this.actualfront++;
-            this.front = this.actualfront % this.length;
-            this.actualback++;
-            this.back =  this.actualback % this.length;
+            this.front++;
+            this.front = this.front % this.length;
+            this.back++;
+        
            
         }
-
-        this.actualback++;
-        this.Array[this.actualback % this.length] = number;
-
+        
+        this.back++;
+        this.Array[this.back ] = number;
+        this.length++;
     }
 
     public int dequeue() {
@@ -52,12 +51,12 @@ public class Queue  {
         if (!isEmpty()) {
             int first = this.Array[this.front];
 
-            this.actualfront++;
-            this.front = this.actualfront % this.length;
+            this.front++;
+            this.front = this.front % this.length;
             if (this.front == this.back) {
                 makeEmpty();
             }
-
+            this.length--;
             return first;
         } else {
             System.err.println("THE QUEUE IS EMPTY");
@@ -66,7 +65,7 @@ public class Queue  {
     }
 
     public boolean isFull() {
-        if(Math.abs(actualback - actualfront)== this.length -1){
+        if(Math.abs(back - front)== this.length -1){
             return true;
         }
            return false;
@@ -85,17 +84,13 @@ public class Queue  {
     }
 
     public boolean isEmpty() {
-        if (this.front == -1 && this.back == -1) {
-            return true;
-        }
-
-        return false;
+        return this.front == -1 && this.back == -1;
 
     }
 
     public void makeEmpty() {
-        this.actualfront = -1;
-        this.actualback = -1;
+        this.front = -1;
+        this.back = -1;
     }
 
     public static void main(String[] args) {
