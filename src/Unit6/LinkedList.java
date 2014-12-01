@@ -17,80 +17,85 @@ public class LinkedList implements LinkListInterface {
     public Node tail;
 
     public LinkedList() {
-     
-        
+
     }
-
-
-  
 
     @Override
     public int size() {
-        return this.size;
+        if (this.head != null) {
+            int length = 0;
+            Node current = this.head;
+            do {
+                current = current.getNext();
+                length++;
+            } while (current != null);
+            this.size = length;
+            return length;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public void makeEmpty() {
-        this.size = 0;
+        this.head = null;
+        this.tail = null;
+        System.out.println("Linked list is empty");
     }
 
     @Override
-    public void addAtFront(Node str) {
-        str.setNext(this.head);
-        this.size++;
+    public void addAtFront(String str) {
+        Node newNode = new Node(str);
+
+        newNode.setNext(this.head);
+        this.head = newNode;
+
     }
 
     @Override
-    public void addAtEnd(Node str) {
-        this.tail.setNext(str);
-        this.tail = str;
-        this.tail.setNext(null);
-        this.size++;
+    public void addAtEnd(String str) {
+        // adds a node before the end
+        Node newNode = new Node(str);
+
+        this.tail.setNext(newNode);
+        this.tail = newNode;
+
     }
 
     @Override
     public void remove(Node str) {
-        Node current;
-
-        
-   
-        current = this.head;
+        Node current = this.head;
 
         while (current.getNext() != str) {
             current = current.getNext();
         }
         current.setNext(str.getNext());
-             str.setNext(null);
-             this.size--;
+        str.setNext(null);
+
     }
 
     @Override
     public void toString(LinkedList str) {
         Node current;
         current = this.head;
-        while(current.getNext()!= null){
-            System.out.println(current.getData());
-        }
-    }
-    
-    
-    
-      public static void main(String[] args) {
-       
-          
-          Node node1 = new Node("Ka");
-                    Node node2 = new Node("pp");
-          Node node3 = new Node("a");
+        do {
 
-          LinkedList Alexis2 = new LinkedList();
-                  
-         Alexis2.addAtFront(node3);
-      Alexis2.addAtEnd(node2);
-      Alexis2.addAtEnd(node1);
-          
-          Alexis2.toString(Alexis2);
-          
-          
+            System.out.println(current.getData());
+            current = current.getNext();
+        } while (current != null);
+
+    }
+
+    public static void main(String[] args) {
+
+        LinkedList Alexis2 = new LinkedList();
+
+        Alexis2.addAtFront("a");
+        Alexis2.addAtFront("pp");
+        Alexis2.addAtFront("Ka");
+
+        Alexis2.toString(Alexis2);
+
     }
 
 }

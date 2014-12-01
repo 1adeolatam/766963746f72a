@@ -14,14 +14,14 @@ public interface LinkListInterface {
      *
      * @param str
      */
-    public void addAtFront( Node str );
+    public void addAtFront( String str );
     
     /**
      * Adds a node to the end of the linked list.
      *
      * @param str
      */
-    public void addAtEnd( Node str );
+    public void addAtEnd( String str );
     
     /**
      * Deletes a node in the linked list.
