@@ -28,7 +28,7 @@ public interface LinkListInterface {
      *
      * @param str
      */
-    public void remove(Node str );
+    public void remove(String str );
 
     /**
      * Creates a string that lists the nodes of the linked list.

@@ -63,14 +63,15 @@ public class LinkedList implements LinkListInterface {
     }
 
     @Override
-    public void remove(Node str) {
+    public void remove(String str) {
         Node current = this.head;
 
-        while (current.getNext() != str) {
+        while (current.getData().equalsIgnoreCase(str)) {
             current = current.getNext();
         }
-        current.setNext(str.getNext());
-        str.setNext(null);
+        current.setNext(current.getNext().getNext());
+        
+        
 
     }
 
@@ -94,6 +95,9 @@ public class LinkedList implements LinkListInterface {
         Alexis2.addAtFront("pp");
         Alexis2.addAtFront("Ka");
 
+      
+        
+        
         Alexis2.toString(Alexis2);
 
     }
