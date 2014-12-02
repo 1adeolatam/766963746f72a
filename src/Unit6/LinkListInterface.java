@@ -35,6 +35,6 @@ public interface LinkListInterface {
      *
      * @param str
      */
-    public void toString( LinkedList str );
+    public String toString(  );
 
 }

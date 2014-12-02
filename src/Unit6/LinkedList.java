@@ -32,6 +32,7 @@ public class LinkedList implements LinkListInterface {
             this.size = length;
             return length;
         } else {
+            empty();
             return 0;
         }
     }
@@ -40,65 +41,111 @@ public class LinkedList implements LinkListInterface {
     public void makeEmpty() {
         this.head = null;
         this.tail = null;
-        System.out.println("Linked list is empty");
+        empty();
     }
 
     @Override
     public void addAtFront(String str) {
-        Node newNode = new Node(str);
+        if (this.head != null) {
+            Node newNode = new Node(str);
 
-        newNode.setNext(this.head);
-        this.head = newNode;
+            newNode.setNext(this.head);
+            this.head = newNode;
+        } else {
+            listEmpty(str);
+        }
 
     }
 
     @Override
     public void addAtEnd(String str) {
-        // adds a node before the end
+        if (this.tail != null) {
+            Node newNode = new Node(str);
+
+            this.tail.setNext(newNode);
+            this.tail = newNode;
+        } else {
+            listEmpty(str);
+        }
+
+    }
+
+    public void listEmpty(String str) {
         Node newNode = new Node(str);
-
-        this.tail.setNext(newNode);
+        this.head = newNode;
         this.tail = newNode;
-
     }
 
     @Override
     public void remove(String str) {
-        Node current = this.head;
 
-        while (current.getData().equalsIgnoreCase(str)) {
-            current = current.getNext();
+        Node current = this.head;
+        boolean removed = false;
+
+        if (current.getData().equalsIgnoreCase(str)) {
+            this.head = current.getNext();
+            current.setNext(null);
+        } else {
+
+            while (!current.getNext().getData().equalsIgnoreCase(str)) {
+                current = current.getNext();
+            }
+            current.setNext(current.getNext().getNext());
+            removed = true;
+
         }
-        current.setNext(current.getNext().getNext());
-        
-        
 
     }
 
     @Override
-    public void toString(LinkedList str) {
-        Node current;
-        current = this.head;
-        do {
+    public String toString() {
+        String Stringu = "";
+        if (this.head != null) {
+            Node current;
+            current = this.head;
+            do {
 
-            System.out.println(current.getData());
-            current = current.getNext();
-        } while (current != null);
+                Stringu = Stringu + (current.getData()) + "  ";
+                current = current.getNext();
 
+            } while (current != null);
+        } else {
+            empty();
+        }
+        return Stringu;
+    }
+
+    public void empty() {
+        System.err.println("Linked list is empty");
     }
 
     public static void main(String[] args) {
 
         LinkedList Alexis2 = new LinkedList();
 
-        Alexis2.addAtFront("a");
-        Alexis2.addAtFront("pp");
-        Alexis2.addAtFront("Ka");
+        // Test 1 adding nodes at end and before 
+        System.out.println("Before size " + Alexis2.size());
+        Alexis2.addAtEnd("1st noderino");
+        Alexis2.addAtEnd("2rd noderino");
+        Alexis2.addAtEnd("3nd noderino");
+        Alexis2.addAtEnd("4st noderino");
+        Alexis2.addAtFront("Keepo");
+        System.out.println(Alexis2.toString());
+        System.out.println("After size " + Alexis2.size());
 
-      
-        
-        
-        Alexis2.toString(Alexis2);
+        // Test removing nodes
+        System.out.println("Before size " + Alexis2.size());
+        Alexis2.remove("2rd noderino");
+        System.out.println(Alexis2.toString());
+        Alexis2.remove("Keepo");
+        Alexis2.remove("4st noderino");
+        System.out.println(Alexis2.toString());
+        System.out.println("After size " + Alexis2.size());
+//        LinkedList asas = new LinkedList();
+//
+//        asas.addAtEnd("asdas");
+//        System.out.println(asas.toString());
+//        System.out.println(asas.size());
 
     }
 
