@@ -80,7 +80,6 @@ public class LinkedList implements LinkListInterface {
     public void remove(String str) {
 
         Node current = this.head;
-        boolean removed = false;
 
         if (current.getData().equalsIgnoreCase(str)) {
             this.head = current.getNext();
@@ -91,7 +90,6 @@ public class LinkedList implements LinkListInterface {
                 current = current.getNext();
             }
             current.setNext(current.getNext().getNext());
-            removed = true;
 
         }
 
@@ -101,6 +99,7 @@ public class LinkedList implements LinkListInterface {
     public String toString() {
         String Stringu = "";
         if (this.head != null) {
+
             Node current;
             current = this.head;
             do {
@@ -136,17 +135,24 @@ public class LinkedList implements LinkListInterface {
         // Test removing nodes
         System.out.println("Before size " + Alexis2.size());
         Alexis2.remove("2rd noderino");
-        System.out.println(Alexis2.toString());
+          // 3 nodes removed
         Alexis2.remove("Keepo");
         Alexis2.remove("4st noderino");
         System.out.println(Alexis2.toString());
         System.out.println("After size " + Alexis2.size());
-//        LinkedList asas = new LinkedList();
-//
-//        asas.addAtEnd("asdas");
-//        System.out.println(asas.toString());
-//        System.out.println(asas.size());
 
+        // 
+        LinkedList asas = new LinkedList();
+
+        asas.addAtEnd("asdas");
+        System.out.println(asas.size());
+        System.out.println(asas.toString());
+
+        asas.remove("asdas");
+        System.out.println(asas.size());
+        
+        
+        
     }
 
 }
