@@ -80,15 +80,25 @@ public class LinkedList implements LinkListInterface {
     public void remove(String str) {
 
         Node current = this.head;
-
+boolean done = false;
         if (current.getData().equalsIgnoreCase(str)) {
             this.head = current.getNext();
             current.setNext(null);
-        } else {
 
-            while (!current.getNext().getData().equalsIgnoreCase(str)) {
+        } else {
+            int counter = 1;
+            while (!current.getNext().getData().equalsIgnoreCase(str) && done == false) {
+                
+                counter++;
                 current = current.getNext();
+                
+                System.out.println(counter);
+                if (current.getNext()== null) {
+                System.err.println("Node doesnt exist");
+                done = true;
             }
+            }
+            
             current.setNext(current.getNext().getNext());
 
         }
@@ -134,25 +144,24 @@ public class LinkedList implements LinkListInterface {
 
         // Test removing nodes
         System.out.println("Before size " + Alexis2.size());
-        Alexis2.remove("2rd noderino");
-          // 3 nodes removed
-        Alexis2.remove("Keepo");
-        Alexis2.remove("4st noderino");
+//        Alexis2.remove("2rd noderino");
+        // 3 nodes removed
+//        Alexis2.remove("Keepo");
+//        Alexis2.remove("4st noderino");
+        Alexis2.remove("hi friends");
         System.out.println(Alexis2.toString());
         System.out.println("After size " + Alexis2.size());
 
-        // 
-        LinkedList asas = new LinkedList();
-
-        asas.addAtEnd("asdas");
-        System.out.println(asas.size());
-        System.out.println(asas.toString());
-
-        asas.remove("asdas");
-        System.out.println(asas.size());
-        
-        
-        
+        // Removing tail\
+//        // 
+//        LinkedList asas = new LinkedList();
+//
+//        asas.addAtEnd("asdas");
+//        System.out.println(asas.size());
+//        System.out.println(asas.toString());
+//
+//        asas.remove("asdas");
+//        System.out.println(asas.size());
     }
 
 }
