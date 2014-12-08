@@ -15,13 +15,13 @@ public interface HashTableInterface {
 
     public void makeEmpty();
 
-    public void isEmpty();
+    public boolean isEmpty();
 
     public int get( int key );
 
     public void put( int value );
 
-    public void containsKey( int key );
+    public boolean containsKey( int key );
 
     public int hash( int key );
 

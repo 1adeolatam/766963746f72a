@@ -12,28 +12,24 @@ package Unit6;
 public class HashTable implements HashTableInterface {
 
     public int[] array;
-
-    public static void main(String[] args) {
-
-        HashTable LeonsTable = new HashTable();
-
-        System.out.println(LeonsTable.capacity());
-
-    }
-
+int collisions = 0;
     public HashTable() {
-        this.array = new int[nextPrime(50)];
+        this.array = new int[51];
+        for (int i = 0; i < this.array.length; i++) {
+            this.array[i] = -1;
+        }
+        System.out.println("There are " + size() + " elemenets in this table.");
     }
 
     @Override
     public void resize() {
-        if (loadFactor() >= .75) {
+       
             int[] nextarray = new int[nextPrime(capacity())];
 
-            for (int i = 0; i < this.array.length; i++) {
-                nextarray[i] = this.array[i];
-            }
-        }
+            System.arraycopy(this.array, 0, nextarray, 0, this.array.length);
+
+            this.array = nextarray;
+            System.out.println("New array size = " + this.array.length);
 
     }
 
@@ -41,11 +37,10 @@ public class HashTable implements HashTableInterface {
     public int size() {
         int totalCounted = 0;
 
-        for (int i = 0; i < this.array.length; i++) {
+        for (int i = 0; i < this.capacity(); i++) {
             if (this.array[i] > -1) {
                 totalCounted++;
             }
-
         }
 
         return totalCounted;
@@ -53,7 +48,9 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public double loadFactor() {
-        return this.size() / this.capacity();
+        double lf;
+        lf = (double) this.size() / this.capacity() * 100.0;
+        return lf;
     }
 
     // Stack overflow http://stackoverflow.com/questions/22082770/next-prime-number-java-only-working-with-certain-numbers
@@ -89,26 +86,52 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public void makeEmpty() {
+        for (int i = 0; i < this.array.length; i++) {
+            this.array[i] = -1;
+        }
 
     }
 
     @Override
-    public void isEmpty() {
+    public boolean isEmpty() {
+        if (size() == 0) {
+            return true;
+        }
+
+        return false;
 
     }
 
     @Override
     public void put(int value) {
 
+        if (loadFactor() < 75.0) {
+
+            System.out.println("Load Factor before adding " + loadFactor() + "%.");
+              array[value] = value;
+            System.out.println("Value " + value + " has been added at index " + hash(value));
+          
+
+        } else {
+            if(loadFactor()>= 75.0){
+            resize();
+            }
+            put(value);
+        }
     }
 
     @Override
-    public void containsKey(int key) {
+    public boolean containsKey(int key) {
+        if (this.array[key] < 0) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public int get(int key) {
-
+        System.out.println("Returning value at index " + key);
+        return this.array[key];
     }
 
     @Override
@@ -117,6 +140,16 @@ public class HashTable implements HashTableInterface {
         index = key % capacity();
         return index;
 
+    }
+
+    public static void main(String[] args) {
+
+        HashTable Table1 = new HashTable();
+
+        for (int i = 0; i < 50; i++) {
+            Table1.put(i);
+        }
+      
     }
 
 }
