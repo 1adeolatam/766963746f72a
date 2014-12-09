@@ -165,6 +165,7 @@ public class HashTable implements HashTableInterface {
         HashTable Table1 = new HashTable(50);
 
         for (int i = 0; i < 1000; i++) {
+            // The array resizes when the laod factor hits 75% and causes it to drop to 25% (multiply current cap. by 3
             Table1.put((int) (Math.random() * 10000));
 
         }
