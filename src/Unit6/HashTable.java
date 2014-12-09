@@ -12,30 +12,28 @@ package Unit6;
 public class HashTable implements HashTableInterface {
 
     public int[] array;
-   
 
-    public HashTable( int expectedSize ) {
-        this.array = new int[ nextPrime( expectedSize ) ];
+    public HashTable(int expectedSize) {
+        this.array = new int[nextPrime(expectedSize)];
         this.makeEmpty();
         System.out.println("There are " + size() + " elemenets in this table.");
     }
 
     @Override
     public void resize() {
-
+        // Makes the expected amount of elements at 25% 75 / 3 = 25.
         int[] nextarray = new int[nextPrime(capacity())];
         for (int i = 0; i < nextarray.length; i++) {
             nextarray[i] = -1;
         }
-        
-        for( int i = 0; i < this.array.length;i++ ){
-            if(this.array[i] > -1)
-            nextarray[i] = hash(this.array[i]);
+
+        for (int i = 0; i < this.array.length; i++) {
+            if (this.array[i] > -1) {
+                nextarray[i] = hash(this.array[i]);
+            }
         }
         this.array = nextarray;
-            
-            
-            
+
         System.out.println("New array size = " + this.array.length);
 
     }
@@ -112,31 +110,31 @@ public class HashTable implements HashTableInterface {
     @Override
     public void put(int value) {
 
-        System.out.println("Load Factor before adding " + loadFactor() + "%.");
-        int index = hash( value );
+        System.out.format("%24s","\nLoad Factor before adding " );
+        System.out.format("%2.3f", loadFactor());
+        System.out.print("%\n");
+        int index = hash(value);
         int collisions = 0;
         boolean inserted = false;
         do {
-            if( array[index] == -1 ) {
+            if (array[index] == -1) {
                 array[index] = value;
                 inserted = true;
-            }
-            else {
+            } else {
                 collisions++;
                 index++;
-                if( index == array.length ) {
+                if (index == array.length) {
                     index = index % array.length;
                 }
             }
-        } while( !inserted );
-        
-        
-        System.out.println("Value " + value + " has been added at index " + index + " # Collisions: " + collisions );
-        
+        } while (!inserted);
+
+        System.out.println("Value " + value + " has been added at index " + index + " # Collisions: " + collisions);
+
         if (loadFactor() > 75.0) {
             resize();
         }
-        
+
     }
 
     @Override
@@ -163,12 +161,18 @@ public class HashTable implements HashTableInterface {
 
     public static void main(String[] args) {
 
-        HashTable Table1 = new HashTable( 50 );
+        // 50 is the expected size, inputed in the contstructor of the hash table
+        HashTable Table1 = new HashTable(50);
 
         for (int i = 0; i < 1000; i++) {
-            Table1.put( (int) ( Math.random() * 10000) );
-           
+            Table1.put((int) (Math.random() * 10000));
+
         }
+        System.out.println("Is  the table is empty: " + Table1.isEmpty());
+
+        System.out.println(" Make the table empty then check to see if is Empty works");
+        Table1.makeEmpty();
+        System.out.println("Is  the table is empty: " + Table1.isEmpty());
 
     }
 
