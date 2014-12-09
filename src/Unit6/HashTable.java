@@ -12,24 +12,31 @@ package Unit6;
 public class HashTable implements HashTableInterface {
 
     public int[] array;
-int collisions = 0;
-    public HashTable() {
-        this.array = new int[51];
-        for (int i = 0; i < this.array.length; i++) {
-            this.array[i] = -1;
-        }
+   
+
+    public HashTable( int expectedSize ) {
+        this.array = new int[ nextPrime( expectedSize ) ];
+        this.makeEmpty();
         System.out.println("There are " + size() + " elemenets in this table.");
     }
 
     @Override
     public void resize() {
-       
-            int[] nextarray = new int[nextPrime(capacity())];
 
-            System.arraycopy(this.array, 0, nextarray, 0, this.array.length);
-
-            this.array = nextarray;
-            System.out.println("New array size = " + this.array.length);
+        int[] nextarray = new int[nextPrime(capacity())];
+        for (int i = 0; i < nextarray.length; i++) {
+            nextarray[i] = -1;
+        }
+        
+        for( int i = 0; i < this.array.length;i++ ){
+            if(this.array[i] > -1)
+            nextarray[i] = hash(this.array[i]);
+        }
+        this.array = nextarray;
+            
+            
+            
+        System.out.println("New array size = " + this.array.length);
 
     }
 
@@ -49,7 +56,7 @@ int collisions = 0;
     @Override
     public double loadFactor() {
         double lf;
-        lf = (double) this.size() / this.capacity() * 100.0;
+        lf = (double) this.size() / (double) this.capacity() * 100.0;
         return lf;
     }
 
@@ -105,19 +112,31 @@ int collisions = 0;
     @Override
     public void put(int value) {
 
-        if (loadFactor() < 75.0) {
-
-            System.out.println("Load Factor before adding " + loadFactor() + "%.");
-              array[value] = value;
-            System.out.println("Value " + value + " has been added at index " + hash(value));
-          
-
-        } else {
-            if(loadFactor()>= 75.0){
-            resize();
+        System.out.println("Load Factor before adding " + loadFactor() + "%.");
+        int index = hash( value );
+        int collisions = 0;
+        boolean inserted = false;
+        do {
+            if( array[index] == -1 ) {
+                array[index] = value;
+                inserted = true;
             }
-            put(value);
+            else {
+                collisions++;
+                index++;
+                if( index == array.length ) {
+                    index = index % array.length;
+                }
+            }
+        } while( !inserted );
+        
+        
+        System.out.println("Value " + value + " has been added at index " + index + " # Collisions: " + collisions );
+        
+        if (loadFactor() > 75.0) {
+            resize();
         }
+        
     }
 
     @Override
@@ -144,12 +163,13 @@ int collisions = 0;
 
     public static void main(String[] args) {
 
-        HashTable Table1 = new HashTable();
+        HashTable Table1 = new HashTable( 50 );
 
-        for (int i = 0; i < 50; i++) {
-            Table1.put(i);
+        for (int i = 0; i < 1000; i++) {
+            Table1.put( (int) ( Math.random() * 10000) );
+           
         }
-      
+
     }
 
 }
