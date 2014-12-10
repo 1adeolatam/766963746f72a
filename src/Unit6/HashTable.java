@@ -29,7 +29,7 @@ public class HashTable implements HashTableInterface {
 
         for (int i = 0; i < this.array.length; i++) {
             if (this.array[i] > -1) {
-                nextarray[i] = hash(this.array[i]);
+                put(nextarray[i]);
             }
         }
         this.array = nextarray;
@@ -131,7 +131,7 @@ public class HashTable implements HashTableInterface {
 
         System.out.println("Value " + value + " has been added at index " + index + " # Collisions: " + collisions);
 
-        if (loadFactor() > 75.0) {
+        if (loadFactor() >= 75.0) {
             resize();
         }
 
@@ -182,11 +182,14 @@ public class HashTable implements HashTableInterface {
         
         System.out.println("Current hash table size");
         System.out.println(Table1.size());
+                System.out.println("Current hash table capacity");
+                System.out.println(Table1.capacity());
+
         
         
         System.out.println(" Make the table empty then check to see if is Empty works");
         Table1.makeEmpty();
-        System.out.println("Is  the table is empty: " + Table1.isEmpty());
+        System.out.println("Is  the table  empty: " + Table1.isEmpty());
 
     }
 

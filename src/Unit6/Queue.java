@@ -32,14 +32,12 @@ public class Queue {
             this.Array[this.front] = number;
         }
         if (isFull()) {
-            this.front++;
-            this.front = this.front % this.length;
-            this.back++;
+            System.err.println("CAN not add to full queue");
 
         }
 
         this.Array[this.back] = number;
-                this.back++;
+        this.back++;
 
         System.out.println("The number " + number + " has been added to " + this.back);
         this.length++;
@@ -64,9 +62,12 @@ public class Queue {
     }
 
     public boolean isFull() {
-        if (Math.abs(back - front) == this.length - 1) {
-            return true;
+        if (this.front < this.back) {
+            if ((this.back + 1) % this.size() == this.front) {
+                return true;
+            }
         }
+
         return false;
 
     }
@@ -74,15 +75,21 @@ public class Queue {
     public int size() {
         if (isEmpty()) {
             return 0;
-        }
-
-        if (isFull()) {
-            return this.length;
         } else {
-            return (int) Math.abs(this.back - this.front);
-        }
 
+            if (isFull()) {
+                return this.length;
+            }
+            if (this.front < this.back) {
+                return this.back - this.front;
+            } else if (this.back < this.front) {
+                return (this.length - front) + this.back + 1;
+            } else {
+                return 1;
+            }
+        }
     }
+    
 
     public boolean isEmpty() {
         return this.front == -1 && this.back == -1;
@@ -115,10 +122,10 @@ public class Queue {
         Kyu.enqueue(2);
         Kyu.enqueue(3);
         Kyu.enqueue(1);
+        Kyu.enqueue(44);
 
         Kyu.enqueue(6);
-                System.out.println("Current queue size is " + Kyu.size());
-
+        System.out.println("Current queue size is " + Kyu.size());
 
     }
 
