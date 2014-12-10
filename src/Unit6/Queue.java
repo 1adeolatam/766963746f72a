@@ -38,9 +38,10 @@ public class Queue {
 
         }
 
-        this.back++;
         this.Array[this.back] = number;
-        System.out.println("The number "+ number + " has been added to "+ this.back);
+                this.back++;
+
+        System.out.println("The number " + number + " has been added to " + this.back);
         this.length++;
     }
 
@@ -95,7 +96,7 @@ public class Queue {
 
     public static void main(String[] args) {
 
-        Queue Kyu = new Queue(21);
+        Queue Kyu = new Queue(6);
 
         System.out.println("Current queue size is " + Kyu.size());
         // Before : 0
@@ -108,7 +109,16 @@ public class Queue {
         System.out.println("Current queue size is " + Kyu.size());
 
         System.out.println("Dequeue " + Kyu.dequeue());
+        //After: 1
         System.out.println("Current queue size is " + Kyu.size());
+
+        Kyu.enqueue(2);
+        Kyu.enqueue(3);
+        Kyu.enqueue(1);
+
+        Kyu.enqueue(6);
+                System.out.println("Current queue size is " + Kyu.size());
+
 
     }
 
