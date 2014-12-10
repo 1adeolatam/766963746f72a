@@ -110,7 +110,7 @@ public class HashTable implements HashTableInterface {
     @Override
     public void put(int value) {
 
-        System.out.format("%24s","\nLoad Factor before adding " );
+        System.out.format("%24s", "\nLoad Factor before adding ");
         System.out.format("%2.3f", loadFactor());
         System.out.print("%\n");
         int index = hash(value);
@@ -139,10 +139,12 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public boolean containsKey(int key) {
-        if (this.array[key] < 0) {
-            return false;
+        for (int i = 0; i < capacity(); i++) {
+            if (this.array[i] == key) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -171,6 +173,17 @@ public class HashTable implements HashTableInterface {
         }
         System.out.println("Is  the table is empty: " + Table1.isEmpty());
 
+        int randValue = (int) (Math.random() * 1000);
+        System.out.println("Getting value at index " + Table1.get(randValue));
+
+        System.out.println("Checking to see if a value exists in the hash table.");
+        System.out.println("Does the value " + randValue + " exist in the hash table " + Table1.containsKey(randValue));
+
+        
+        System.out.println("Current hash table size");
+        System.out.println(Table1.size());
+        
+        
         System.out.println(" Make the table empty then check to see if is Empty works");
         Table1.makeEmpty();
         System.out.println("Is  the table is empty: " + Table1.isEmpty());

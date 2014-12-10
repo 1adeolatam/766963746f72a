@@ -9,7 +9,7 @@ package Unit6;
  *
  * @author 1adeolatam
  */
-public class Queue  {
+public class Queue {
 
     protected int[] Array;
 
@@ -17,8 +17,6 @@ public class Queue  {
     protected static int back;
     int length;
 
-
-    
     public Queue(int length) {
         this.length = length;
         this.Array = new int[length];
@@ -26,27 +24,27 @@ public class Queue  {
         this.back = -1;
     }
 
-
     public void enqueue(int number) {
         if (isEmpty()) {
             this.front = 0;
             this.back = 0;
+
+            this.Array[this.front] = number;
         }
         if (isFull()) {
             this.front++;
             this.front = this.front % this.length;
             this.back++;
-        
-           
+
         }
-        
+
         this.back++;
-        this.Array[this.back ] = number;
+        this.Array[this.back] = number;
+        System.out.println("The number "+ number + " has been added to "+ this.back);
         this.length++;
     }
 
     public int dequeue() {
-   
 
         if (!isEmpty()) {
             int first = this.Array[this.front];
@@ -61,26 +59,28 @@ public class Queue  {
         } else {
             System.err.println("THE QUEUE IS EMPTY");
         }
-        return -21121;
+        return -1;
     }
 
     public boolean isFull() {
-        if(Math.abs(back - front)== this.length -1){
+        if (Math.abs(back - front) == this.length - 1) {
             return true;
         }
-           return false;
-        
+        return false;
+
     }
-    
-    public int size(){
-        if(isEmpty())
+
+    public int size() {
+        if (isEmpty()) {
             return 0;
-        
-        if(isFull())
+        }
+
+        if (isFull()) {
             return this.length;
-        else
+        } else {
             return (int) Math.abs(this.back - this.front);
-        
+        }
+
     }
 
     public boolean isEmpty() {
@@ -95,10 +95,21 @@ public class Queue  {
 
     public static void main(String[] args) {
 
+        Queue Kyu = new Queue(21);
+
+        System.out.println("Current queue size is " + Kyu.size());
+        // Before : 0
+        Kyu.enqueue(5);
+        // After: 1
+
+        // Before: 1
+        Kyu.enqueue(3);
+        // After: 2
+        System.out.println("Current queue size is " + Kyu.size());
+
+        System.out.println("Dequeue " + Kyu.dequeue());
+        System.out.println("Current queue size is " + Kyu.size());
+
     }
 
-    
- 
-
 }
-
