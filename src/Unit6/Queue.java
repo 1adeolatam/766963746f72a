@@ -38,7 +38,7 @@ public class Queue {
             System.out.println("The QUEUE IS FULL CAN NOT ENQUEUE.");
         } else {
             this.back++;
-
+            this.back = this.back % this.length;
             this.Array[this.back] = number;
 
             System.out.println("The number " + number + " has been added to " + this.back);
@@ -64,7 +64,7 @@ public class Queue {
 
     public boolean isFull() {
         if (this.front < this.back) {
-            if (this.back + 1 == this.length) {
+            if (this.back + 1 == this.length && this.front ==0) {
                 return true;
 
             }
@@ -126,7 +126,11 @@ public class Queue {
         Kyu.enqueue(21);
         Kyu.enqueue(124112415);
                 Kyu.enqueue(2415);
+    Kyu.dequeue();
+    
+           Kyu.enqueue(5);
 
+        System.out.println("IS full?"+Kyu.isFull());
         System.out.println("Current queue size is " + Kyu.size());
 
     }
