@@ -129,7 +129,7 @@ public class Queue {
     Kyu.dequeue();
     
            Kyu.enqueue(5);
-
+ 
         System.out.println("IS full?"+Kyu.isFull());
         System.out.println("Current queue size is " + Kyu.size());
 
