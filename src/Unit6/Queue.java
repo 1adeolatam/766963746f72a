@@ -13,8 +13,8 @@ public class Queue {
 
     protected int[] Array;
 
-    protected static int front;
-    protected static int back;
+    protected int front;
+    protected int back;
     int length;
 
     public Queue(int length) {
@@ -25,23 +25,24 @@ public class Queue {
     }
 
     public void enqueue(int number) {
+
         if (isEmpty()) {
             this.front = 0;
             this.back = 0;
 
             this.Array[this.front] = number;
-        }
-        if (isFull()) {
+        } else if (isFull()) {
+            System.out.println("THe number" + number + "WAS NOT ADDED. ");
             System.err.println("CAN not add to full queue");
 
-        }
+        }else{
 
         this.Array[this.back] = number;
         this.back++;
 
         System.out.println("The number " + number + " has been added to " + this.back);
         this.length++;
-    }
+    }}
 
     public int dequeue() {
 
@@ -62,10 +63,9 @@ public class Queue {
     }
 
     public boolean isFull() {
-        if (this.front < this.back) {
-            if ((this.back + 1) % this.size() == this.front) {
-                return true;
-            }
+
+        if ((this.back + 1) % this.size() == this.front) {
+            return true;
         }
 
         return false;
@@ -75,25 +75,20 @@ public class Queue {
     public int size() {
         if (isEmpty()) {
             return 0;
+        } else if (this.front < this.back) {
+            return this.back - this.front ;
+        } else if (this.back < this.front) {
+            return (this.length - front) + this.back + 1;
         } else {
-
-            if (isFull()) {
-                return this.length;
-            }
-            if (this.front < this.back) {
-                return this.back - this.front;
-            } else if (this.back < this.front) {
-                return (this.length - front) + this.back + 1;
-            } else {
-                return 1;
-            }
+            return 1;
         }
     }
-    
 
     public boolean isEmpty() {
-        return this.front == -1 && this.back == -1;
-
+        if (this.front == -1) {
+            return true;
+        }
+        return false;
     }
 
     public void makeEmpty() {
@@ -125,6 +120,7 @@ public class Queue {
         Kyu.enqueue(44);
 
         Kyu.enqueue(6);
+
         System.out.println("Current queue size is " + Kyu.size());
 
     }
