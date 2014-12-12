@@ -17,7 +17,7 @@ public class Queue implements QueueInterface {
 
     protected int front;
     protected int back;
-    int length;
+
 
     public Queue(int length) {
 
@@ -31,7 +31,8 @@ public class Queue implements QueueInterface {
         if (isEmpty()) {
             this.front = 0;
             this.back = 0;
-
+            
+            
             this.Array[this.front] = number;
             System.out.println("The number " + number + " has been added to " + this.front);
 
@@ -40,7 +41,7 @@ public class Queue implements QueueInterface {
             System.out.println("The QUEUE IS FULL CAN NOT ENQUEUE.");
         } else {
             this.back++;
-            this.back = this.back % this.length;
+            this.back = this.back % this.Array.length;
             this.Array[this.back] = number;
 
             System.out.println("The number " + number + " has been added to " + this.back);
@@ -53,7 +54,7 @@ public class Queue implements QueueInterface {
             int first = this.Array[this.front];
             System.out.println("This is the front " + this.Array[this.front]);
             this.front++;
-            this.front = this.front % this.length;
+            this.front = this.front % this.Array.length;
             if (this.front == this.back) {
                 makeEmpty();
             }
@@ -66,7 +67,7 @@ public class Queue implements QueueInterface {
 
     public boolean isFull() {
         if (this.front < this.back) {
-            if (this.back + 1 == this.length && this.front == 0) {
+            if (this.back + 1 == this.Array.length && this.front == 0) {
                 return true;
 
             }
@@ -85,7 +86,7 @@ public class Queue implements QueueInterface {
         } else if (this.front < this.back) {
             return this.back - this.front + 1;
         } else if (this.back < this.front) {
-            return (this.length - front) + this.back + 1;
+            return (this.Array.length - front) + this.back + 1;
         } else {
             return 1;
         }

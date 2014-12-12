@@ -24,33 +24,33 @@ public class HashTable implements HashTableInterface {
     @Override
     public void resize() {
         // Makes the expected amount of elements at 25% 75 / 3 = 25.
-        int[] nextarray = new int[nextPrime(capacity())];
-        for (int i = 0; i < nextarray.length; i++) {
-            nextarray[i] = -1;
-        }
+        int[] oldArray = this.array;
 
-        for (int i = 0; i < this.array.length; i++) {
-            if (this.array[i] > -1) {
-                put(nextarray[i]);
+        this.array = new int[nextPrime(capacity())];
+        makeEmpty();
+
+        for (int i = 0; i < oldArray.length; i++) {
+            if (oldArray[i] >= 0) {
+                put(oldArray[i]);
             }
         }
-        this.array = nextarray;
 
-        System.out.println("New array size = " + this.array.length);
+        System.out.println("NEW array size = " + this.array.length);
 
     }
 
     @Override
     public int size() {
         int totalCounted = 0;
-
-        for (int i = 0; i < this.capacity(); i++) {
-            if (this.array[i] > -1) {
-                totalCounted++;
+       
+            for (int i = 0; i < this.array.length; i++) {
+                if (this.array[i] > -1) {
+                    totalCounted++;
+                }
             }
-        }
 
-        return totalCounted;
+            return totalCounted;
+      
     }
 
     @Override
@@ -62,7 +62,7 @@ public class HashTable implements HashTableInterface {
 
     // Stack overflow http://stackoverflow.com/questions/22082770/next-prime-number-java-only-working-with-certain-numbers
     public int nextPrime(int capacity) {
-        capacity = capacity * 3;
+        capacity = size() * 4;
         boolean isPrime = false;
         int m = (int) Math.ceil(Math.sqrt(capacity));
         int start = 3;
@@ -118,15 +118,17 @@ public class HashTable implements HashTableInterface {
         int index = hash(value);
         int collisions = 0;
         boolean inserted = false;
+
         do {
-            if (array[index] == -1) {
-                array[index] = value;
+            if (this.array[index] == -1) {
+                this.array[index] = value;
                 inserted = true;
+
             } else {
                 collisions++;
                 index++;
-                if (index == array.length) {
-                    index = index % array.length;
+                if (index == this.array.length) {
+                    index = index % this.array.length;
                 }
             }
         } while (!inserted);
@@ -157,9 +159,7 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public int hash(int key) {
-        int index;
-        index = key % capacity();
-        return index;
+        return key % capacity();
 
     }
 
@@ -181,20 +181,15 @@ public class HashTable implements HashTableInterface {
         System.out.println("Checking to see if a value exists in the hash table.");
         System.out.println("Does the value " + randValue + " exist in the hash table " + Table1.containsKey(randValue));
 
-        
         System.out.println("Current hash table size");
         System.out.println(Table1.size());
-                System.out.println("Current hash table capacity");
-                System.out.println(Table1.capacity());
+        System.out.println("Current hash table capacity");
+        System.out.println(Table1.capacity());
 
-        
-        
         System.out.println(" Make the table empty then check to see if is Empty works");
         Table1.makeEmpty();
         System.out.println("Is  the table  empty: " + Table1.isEmpty());
 
     }
-
-
 
 }
