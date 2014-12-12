@@ -5,11 +5,16 @@
  */
 package Unit6;
 
+import edu.hdsb.gwss.muir.ics4u.u6.StackInterface;
+
 /**
  *
  * @author 1adeolatam
  */
-public class Stack implements StackInterface {
+
+
+
+public class Stack implements   StackInterface{
 
     /**
      * @param args the command line arguments
@@ -21,7 +26,7 @@ public class Stack implements StackInterface {
 
     public Stack(int size) {
         this.Array = new int[size];
-        this.length = size;
+        this.length = size();
         this.top = -1;
     }
 
@@ -43,7 +48,7 @@ public class Stack implements StackInterface {
             return popped;
 
         } else {
-            System.err.println("CANT POP THE BOP because STACK is EMPTY");
+            System.out.println("CANT POP THE BOP because STACK is EMPTY");
         }
         return -1;
     }
@@ -55,7 +60,7 @@ public class Stack implements StackInterface {
 
             this.Array[top] = num;
         } else {
-            System.err.println("FULL Can't push ");
+            System.out.println("FULL Can't push ");
         }
     }
 
@@ -118,6 +123,11 @@ public class Stack implements StackInterface {
         
         
 
+    }
+
+    @Override
+    public int capacity() {
+    return this.Array.length;
     }
 
 }

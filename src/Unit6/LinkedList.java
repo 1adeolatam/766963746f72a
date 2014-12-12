@@ -5,6 +5,8 @@
  */
 package Unit6;
 
+import edu.hdsb.gwss.muir.ics4u.u6.LinkListInterface;
+
 /**
  *
  * @author 1adeolatam
@@ -13,7 +15,7 @@ public class LinkedList implements LinkListInterface {
 
     public int size = 0;
 
-    public Node head;
+    public Node head; 
     public Node tail;
 
     public LinkedList() {
@@ -162,6 +164,13 @@ boolean done = false;
 //
 //        asas.remove("asdas");
 //        System.out.println(asas.size());
+    }
+
+    @Override
+    public boolean isEmpty() {
+        if(this.size() == 0)
+            return true;
+    return false;
     }
 
 }

@@ -5,6 +5,8 @@
  */
 package Unit6;
 
+import edu.hdsb.gwss.muir.ics4u.u6.HashTableInterface;
+
 /**
  *
  * @author 1adeolatam
@@ -192,5 +194,7 @@ public class HashTable implements HashTableInterface {
         System.out.println("Is  the table  empty: " + Table1.isEmpty());
 
     }
+
+
 
 }

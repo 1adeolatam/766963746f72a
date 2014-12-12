@@ -5,11 +5,13 @@
  */
 package Unit6;
 
+import edu.hdsb.gwss.muir.ics4u.u6.QueueInterface;
+
 /**
  *
  * @author 1adeolatam
  */
-public class Queue {
+public class Queue implements QueueInterface {
 
     protected int[] Array;
 
@@ -18,7 +20,7 @@ public class Queue {
     int length;
 
     public Queue(int length) {
-        this.length = length;
+
         this.Array = new int[length];
         this.front = -1;
         this.back = -1;
@@ -49,7 +51,7 @@ public class Queue {
 
         if (!isEmpty()) {
             int first = this.Array[this.front];
-            System.out.println("This is sthe front " + this.Array[this.front]);
+            System.out.println("This is the front " + this.Array[this.front]);
             this.front++;
             this.front = this.front % this.length;
             if (this.front == this.back) {
@@ -64,7 +66,7 @@ public class Queue {
 
     public boolean isFull() {
         if (this.front < this.back) {
-            if (this.back + 1 == this.length && this.front ==0) {
+            if (this.back + 1 == this.length && this.front == 0) {
                 return true;
 
             }
@@ -125,14 +127,31 @@ public class Queue {
         Kyu.enqueue(6252);
         Kyu.enqueue(21);
         Kyu.enqueue(124112415);
-                Kyu.enqueue(2415);
-    Kyu.dequeue();
-    
-           Kyu.enqueue(5);
- 
-        System.out.println("IS full?"+Kyu.isFull());
+        Kyu.enqueue(2415);
+        Kyu.dequeue();
+
+        Kyu.enqueue(5);
+
+        System.out.println("IS full?" + Kyu.isFull());
         System.out.println("Current queue size is " + Kyu.size());
 
+    }
+
+    @Override
+    public int front() {
+
+        return this.Array[this.front];
+    }
+
+    @Override
+    public int back() {
+        return this.Array[this.back];
+    }
+
+    @Override
+    public int capacity() {
+
+        return this.Array.length;
     }
 
 }
