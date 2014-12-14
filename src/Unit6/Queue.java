@@ -18,7 +18,6 @@ public class Queue implements QueueInterface {
     protected int front;
     protected int back;
 
-
     public Queue(int length) {
 
         this.Array = new int[length];
@@ -31,8 +30,7 @@ public class Queue implements QueueInterface {
         if (isEmpty()) {
             this.front = 0;
             this.back = 0;
-            
-            
+
             this.Array[this.front] = number;
             System.out.println("The number " + number + " has been added to " + this.front);
 
@@ -102,6 +100,25 @@ public class Queue implements QueueInterface {
     public void makeEmpty() {
         this.front = -1;
         this.back = -1;
+    }
+
+    public void displayQueue() {
+        for (int i = 0; i < this.Array.length; i++) {
+            if (this.front == i && this.back == i) {
+                System.out.format("%4s", "FB");
+            } else if (this.front == i) {
+                System.out.format("%4s", "F-");
+            } else if (this.back == i) {
+                System.out.format("%4s", "B-");
+            } else {
+                System.out.format("%4s", "");
+            }
+        }
+        System.out.println();
+        for (int i = 0; i < this.Array.length; i++) {
+            System.out.format("%4s", this.Array[i] + "-");
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) {
