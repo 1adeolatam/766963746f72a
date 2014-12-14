@@ -5,7 +5,7 @@
  */
 package Unit6;
 
-
+import edu.hdsb.gwss.muir.ics4u.u6.HashTableInterface;
 
 /**
  *
@@ -42,15 +42,17 @@ public class HashTable implements HashTableInterface {
     @Override
     public int size() {
         int totalCounted = 0;
-       
-            for (int i = 0; i < this.array.length; i++) {
-                if (this.array[i] > -1) {
-                    totalCounted++;
-                }
-            }
 
-            return totalCounted;
       
+
+        for (int i = 0; i < this.array.length; i++) {
+            if (this.array[i] > -1) {
+                totalCounted++;
+            }
+        }
+
+        return totalCounted;
+
     }
 
     @Override
@@ -62,7 +64,7 @@ public class HashTable implements HashTableInterface {
 
     // Stack overflow http://stackoverflow.com/questions/22082770/next-prime-number-java-only-working-with-certain-numbers
     public int nextPrime(int capacity) {
-        capacity = size() * 4;
+        capacity =  capacity * 3;
         boolean isPrime = false;
         int m = (int) Math.ceil(Math.sqrt(capacity));
         int start = 3;

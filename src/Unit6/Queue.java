@@ -5,12 +5,12 @@
  */
 package Unit6;
 
-import edu.hdsb.gwss.muir.ics4u.u6.QueueInterface;
-
 /**
  *
  * @author 1adeolatam
  */
+import edu.hdsb.gwss.muir.ics4u.u6.QueueInterface;
+
 public class Queue implements QueueInterface {
 
     protected int[] Array;

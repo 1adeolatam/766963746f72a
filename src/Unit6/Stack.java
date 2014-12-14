@@ -7,14 +7,8 @@ package Unit6;
 
 import edu.hdsb.gwss.muir.ics4u.u6.StackInterface;
 
-/**
- *
- * @author 1adeolatam
- */
 
-
-
-public class Stack implements   StackInterface{
+public class Stack implements StackInterface {
 
     /**
      * @param args the command line arguments
@@ -35,7 +29,7 @@ public class Stack implements   StackInterface{
         if (!isEmpty()) {
             return this.Array[top];
         } else {
-            System.err.println("CANT TOP THE BOP because STACK is EMPTY");    
+            System.err.println("CANT TOP THE BOP because STACK is EMPTY");
         }
         return -1;
     }
@@ -93,9 +87,10 @@ public class Stack implements   StackInterface{
         this.top = -1;
     }
 
-    public void makeFull(){
-        this.top = this.length -1;
+    public void makeFull() {
+        this.top = this.length - 1;
     }
+
     public static void main(String[] args) {
         Stack Stock = new Stack(21);
 
@@ -115,19 +110,16 @@ public class Stack implements   StackInterface{
         Stock.makeEmpty();
         System.out.println(Stock.top());
         System.out.println(Stock.pop());
-        
+
         //pushing a full stack
         Stock.makeFull();
         Stock.push(21);
-
-        
-        
 
     }
 
     @Override
     public int capacity() {
-    return this.Array.length;
+        return this.Array.length;
     }
 
 }
