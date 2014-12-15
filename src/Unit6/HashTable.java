@@ -50,6 +50,7 @@ public class HashTable implements HashTableInterface {
                 totalCounted++;
             }
         }
+       
 
         return totalCounted;
 
@@ -64,28 +65,28 @@ public class HashTable implements HashTableInterface {
 
     // Stack overflow http://stackoverflow.com/questions/22082770/next-prime-number-java-only-working-with-certain-numbers
     public int nextPrime(int capacity) {
-        capacity =  capacity * 3;
+      int  newcapacity =  capacity * 3;
         boolean isPrime = false;
         int m = (int) Math.ceil(Math.sqrt(capacity));
         int start = 3;
-        capacity++;
-        if (capacity % 2 == 0) {
-            capacity = capacity + 1;
+        newcapacity++;
+        if (newcapacity % 2 == 0) {
+            newcapacity = newcapacity + 1;
         }
         while (!isPrime) {
             isPrime = true;
             for (int i = start; i <= m; i = i + 2) {
-                if (capacity % i == 0) {
+                if (newcapacity % i == 0) {
                     isPrime = false;
                     break;
                 }
             }
             if (!isPrime) {
-                capacity = capacity + 2;
+                newcapacity = newcapacity + 2;
             }
         }
 
-        return capacity;
+        return newcapacity;
     }
 
     @Override
@@ -166,8 +167,7 @@ public class HashTable implements HashTableInterface {
     }
 
     public static void main(String[] args) {
-
-        // 50 is the expected size, inputed in the contstructor of the hash table
+// 50 is the expected size, inputed in the contstructor of the hash table
         HashTable Table1 = new HashTable(50);
 
         for (int i = 0; i < 1000; i++) {

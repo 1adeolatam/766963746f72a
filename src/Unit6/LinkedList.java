@@ -150,10 +150,10 @@ public class LinkedList implements LinkListInterface {
 
         // Test removing nodes
         System.out.println("Before size " + Alexis2.size());
-//        Alexis2.remove("2rd noderino");
+       Alexis2.remove("2rd noderino");
         // 3 nodes removed
-//        Alexis2.remove("Keepo");
-//        Alexis2.remove("4st noderino");
+        Alexis2.remove("Keepo");
+        Alexis2.remove("4st noderino");
         Alexis2.remove("hi friends");
 
         System.out.println(Alexis2.toString());
