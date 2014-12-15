@@ -29,7 +29,7 @@ public class Stack implements StackInterface {
         if (!isEmpty()) {
             return this.Array[top];
         } else {
-            System.err.println("CANT TOP THE BOP because STACK is EMPTY");
+            System.out.println("CANT TOP THE BOP because STACK is EMPTY");
         }
         return -1;
     }

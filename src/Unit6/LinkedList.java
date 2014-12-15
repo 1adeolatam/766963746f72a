@@ -7,7 +7,6 @@ package Unit6;
 
 import edu.hdsb.gwss.muir.ics4u.u6.LinkListInterface;
 
-
 /**
  *
  * @author 1adeolatam
@@ -16,7 +15,7 @@ public class LinkedList implements LinkListInterface {
 
     public int size = 0;
 
-    public Node head; 
+    public Node head;
     public Node tail;
 
     public LinkedList() {
@@ -83,26 +82,30 @@ public class LinkedList implements LinkListInterface {
     public void remove(String str) {
 
         Node current = this.head;
-boolean done = false;
+        boolean done = false;
         if (current.getData().equalsIgnoreCase(str)) {
             this.head = current.getNext();
             current.setNext(null);
 
         } else {
-            int counter = 1;
-            while (!current.getNext().getData().equalsIgnoreCase(str) && done == false) {
-                
-                counter++;
-                current = current.getNext();
-                
-                System.out.println(counter);
-                if (current.getNext()== null) {
-                System.err.println("Node doesnt exist");
-                done = true;
+            if (current.getNext() != null) {
+
+                int counter = 1;
+                while (current.getNext().getData().equalsIgnoreCase(str)) {
+
+                    counter++;
+
+                    System.out.println(counter);
+
+                    current = current.getNext();
+
+                }
+                 current.setNext(current.getNext().getNext());
+            } else {
+                System.out.println("The node does not exist.");
             }
-            }
-            
-            current.setNext(current.getNext().getNext());
+
+           
 
         }
 
@@ -128,7 +131,7 @@ boolean done = false;
     }
 
     public void empty() {
-        System.err.println("Linked list is empty");
+        System.out.println("Linked list is empty");
     }
 
     public static void main(String[] args) {
@@ -152,25 +155,26 @@ boolean done = false;
 //        Alexis2.remove("Keepo");
 //        Alexis2.remove("4st noderino");
         Alexis2.remove("hi friends");
+
         System.out.println(Alexis2.toString());
         System.out.println("After size " + Alexis2.size());
 
-        // Removing tail\
-//        // 
-//        LinkedList asas = new LinkedList();
-//
-//        asas.addAtEnd("asdas");
-//        System.out.println(asas.size());
-//        System.out.println(asas.toString());
-//
-//        asas.remove("asdas");
-//        System.out.println(asas.size());
+        //  Removing tail
+        LinkedList asas = new LinkedList();
+
+        asas.addAtEnd("asdas");
+        System.out.println(asas.size());
+        System.out.println(asas.toString());
+
+        asas.remove("asdas");
+        System.out.println(asas.size());
     }
 
     @Override
     public boolean isEmpty() {
-        if(this.size() == 0)
-    return true;
+        if (this.size() == 0) {
+            return true;
+        }
         return false;
     }
 
