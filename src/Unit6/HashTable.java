@@ -156,8 +156,8 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public int get(int key) {
-        System.out.println("Returning value at index " + key);
-        return this.array[key];
+        System.out.println("Returning value at index " + hash(key));
+        return this.array[hash(key)];
     }
 
     @Override

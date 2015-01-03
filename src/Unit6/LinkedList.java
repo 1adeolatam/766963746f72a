@@ -100,12 +100,10 @@ public class LinkedList implements LinkListInterface {
                     current = current.getNext();
 
                 }
-                 current.setNext(current.getNext().getNext());
+                current.setNext(current.getNext().getNext());
             } else {
                 System.out.println("The node does not exist.");
             }
-
-           
 
         }
 
@@ -150,7 +148,7 @@ public class LinkedList implements LinkListInterface {
 
         // Test removing nodes
         System.out.println("Before size " + Alexis2.size());
-       Alexis2.remove("2rd noderino");
+        Alexis2.remove("2rd noderino");
         // 3 nodes removed
         Alexis2.remove("Keepo");
         Alexis2.remove("4st noderino");

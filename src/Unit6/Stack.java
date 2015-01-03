@@ -15,12 +15,12 @@ public class Stack implements StackInterface {
      */
     protected int[] Array;
 
-    private static int top;
-    int length;
+    private int top;
+ 
 
     public Stack(int size) {
         this.Array = new int[size];
-        this.length = size();
+       
         this.top = -1;
     }
 
@@ -76,7 +76,7 @@ public class Stack implements StackInterface {
 
     @Override
     public boolean isFull() {
-        if (this.top == this.length - 1) {
+        if (this.top == this.Array.length - 1) {
             return true;
         }
         return false;
@@ -88,7 +88,7 @@ public class Stack implements StackInterface {
     }
 
     public void makeFull() {
-        this.top = this.length - 1;
+        this.top = this.Array.length - 1;
     }
 
     public static void main(String[] args) {

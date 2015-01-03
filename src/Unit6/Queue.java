@@ -47,19 +47,23 @@ public class Queue implements QueueInterface {
     }
 
     public int dequeue() {
-
         if (!isEmpty()) {
             int first = this.Array[this.front];
-            System.out.println("This is the front " + this.Array[this.front]);
+            this.Array[this.front] = 0;
+            System.out.println("This is the front value " + first);
+           if(this.front == this.back){
+               makeEmpty();
+               return first;
+           }
             this.front++;
             this.front = this.front % this.Array.length;
-            if (this.front == this.back) {
-                makeEmpty();
-            }
+            
+          
             return first;
         } else {
             System.err.println("THE QUEUE IS EMPTY");
         }
+        
         return -1;
     }
 
@@ -81,7 +85,7 @@ public class Queue implements QueueInterface {
     public int size() {
         if (isEmpty()) {
             return 0;
-        } else if (this.front < this.back) {
+        }else if (this.front < this.back) {
             return this.back - this.front + 1;
         } else if (this.back < this.front) {
             return (this.Array.length - front) + this.back + 1;
@@ -125,44 +129,35 @@ public class Queue implements QueueInterface {
 
         Queue Kyu = new Queue(6);
 
-        System.out.println("Current queue size is " + Kyu.size());
-        // Before : 0
-        Kyu.enqueue(5);
-        // After: 1
-
-        // Before: 1
-        Kyu.enqueue(3);
-        // After: 2
-        System.out.println("Current queue size is " + Kyu.size());
-
-        System.out.println("Dequeue " + Kyu.dequeue());
-        //After: 1
-
-        System.out.println("Current queue size is " + Kyu.size());
-        Kyu.enqueue(2);
+        Kyu.makeEmpty();
         Kyu.enqueue(3);
         Kyu.enqueue(4);
-        Kyu.enqueue(6252);
-        Kyu.enqueue(21);
-        Kyu.enqueue(124112415);
-        Kyu.enqueue(2415);
+
         Kyu.dequeue();
+                Kyu.dequeue();
 
-        Kyu.enqueue(5);
-
-        System.out.println("IS full?" + Kyu.isFull());
-        System.out.println("Current queue size is " + Kyu.size());
-
+        for(int i = 0; i < 6; i++){
+            System.out.println(Kyu.Array[i]);
+        }
+        System.out.println("Size is "+Kyu.size());
     }
 
     @Override
     public int front() {
-
+        if(isEmpty()){
+            System.out.println("EMPTY");
+            return -21;
+        }
         return this.Array[this.front];
+        
     }
 
     @Override
     public int back() {
+         if(isEmpty()){
+            System.out.println("EMPTY");
+            return -21;
+        }
         return this.Array[this.back];
     }
 
