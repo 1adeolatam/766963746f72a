@@ -90,15 +90,8 @@ public class MixedFraction extends Fraction {
 
     }
 
-    @Override
-    public int getNumerator() {
-        return this.numerator;
-    }
 
-    @Override
-    public int getDenominator() {
+ 
 
-        return this.denominator;
-    }
 
 }

@@ -22,10 +22,10 @@ public abstract class Fraction {
     }
 
     public Fraction(int numerator, int denominator) {
-        
+
         this.numerator = numerator;
         this.denominator = denominator;
-         }
+    }
 
     public double size() {
         return this.getNumerator() / this.getDenominator();
@@ -53,7 +53,7 @@ public abstract class Fraction {
     ;
 
     public Fraction times(Fraction f) {
-        ProperFraction product = new ProperFraction();
+        Fraction product = new ProperFraction();
 
         product.setNumerator(f.getNumerator() * this.getNumerator());
 
@@ -75,19 +75,19 @@ public abstract class Fraction {
         return product;
     }
 
-      public void reduce() {
-       int value = this.numerator;
-          System.out.println(value);
-       for(int i = value; i >0; value--){
-           if(this.denominator % i == 0 && this.numerator% i == 0){
-               this.setDenominator(this.denominator/i);
-               this.setNumerator(this.numerator/i);
-           }  else{
-               System.out.println("can't be reduced.");
-           }        
-       }
-        
-     }
+    public void reduce() {
+        int value = this.numerator;
+        System.out.println(value);
+        for (int i = value; i > 0; value--) {
+            if (this.denominator % i == 0 && this.numerator % i == 0) {
+                this.setDenominator(this.denominator / i);
+                this.setNumerator(this.numerator / i);
+            } else {
+                System.out.println("can't be reduced.");
+            }
+        }
+
+    }
 
     @Override
     public String toString() {
@@ -117,11 +117,19 @@ public abstract class Fraction {
 
     ;
 
-    public abstract int getNumerator();
+    public int getNumerator() {
+        return this.numerator;
+    }
+
+    ;
 
     public abstract void setNumerator(int numerator);
 
-    public abstract int getDenominator();
+    public int getDenominator() {
+        return this.denominator;
+    }
+
+    ;
 
     public abstract void setDenominator(int denominator);
 

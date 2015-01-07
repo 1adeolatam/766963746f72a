@@ -192,6 +192,11 @@ public class HashTable implements HashTableInterface {
         Table1.makeEmpty();
         System.out.println("Is  the table  empty: " + Table1.isEmpty());
 
+        
+
+
+
+
     }
 
 }

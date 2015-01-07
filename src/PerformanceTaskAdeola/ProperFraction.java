@@ -20,14 +20,10 @@ public class ProperFraction extends Fraction {
 
     public ProperFraction(int numerator, int denominator) {
         super(numerator, denominator);
-        this.numerator = numerator;
-        this.denominator = denominator;
-    }
+        this.setNumerator(numerator);
+        this.setDenominator(denominator);    }
 
-    @Override
-    public int getNumerator() {
-        return this.numerator;
-    }
+
 
     @Override
     public void setNumerator(int numerator) {
@@ -40,10 +36,7 @@ public class ProperFraction extends Fraction {
 
     }
 
-    @Override
-    public int getDenominator() {
-        return this.denominator;
-    }
+ 
 
     @Override
     public void setDenominator(int denominator) {
@@ -58,6 +51,13 @@ public class ProperFraction extends Fraction {
     public String toString() {
         return "ProperFraction{" + "numerator=" + numerator + ", denominator=" + denominator + '}';
     }
+
+    @Override
+    public void invert() {
+        System.out.println("Can't iinert. "); 
+    }
+    
+    
     
     
 

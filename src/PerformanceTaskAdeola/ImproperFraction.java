@@ -47,15 +47,7 @@ public class ImproperFraction extends Fraction {
         }
     }
 
-    @Override
-    public int getNumerator() {
-        return this.numerator;
-    }
 
-    @Override
-    public int getDenominator() {
-        return this.denominator;
-    }
 
     @Override
     public String toString() {
