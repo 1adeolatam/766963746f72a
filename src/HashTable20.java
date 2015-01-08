@@ -9,7 +9,7 @@
  */
 public class HashTable20 {
     
-    public Node20 arrary;
+    public Node20[] arrary;
  
     
  

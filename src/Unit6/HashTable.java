@@ -43,14 +43,11 @@ public class HashTable implements HashTableInterface {
     public int size() {
         int totalCounted = 0;
 
-      
-
         for (int i = 0; i < this.array.length; i++) {
             if (this.array[i] > -1) {
                 totalCounted++;
             }
         }
-       
 
         return totalCounted;
 
@@ -65,7 +62,7 @@ public class HashTable implements HashTableInterface {
 
     // Stack overflow http://stackoverflow.com/questions/22082770/next-prime-number-java-only-working-with-certain-numbers
     public int nextPrime(int capacity) {
-      int  newcapacity =  capacity * 3;
+        int newcapacity = capacity * 3;
         boolean isPrime = false;
         int m = (int) Math.ceil(Math.sqrt(capacity));
         int start = 3;
@@ -146,18 +143,49 @@ public class HashTable implements HashTableInterface {
 
     @Override
     public boolean containsKey(int key) {
-        for (int i = 0; i < capacity(); i++) {
+
+        int i = hash(key);
+        boolean exists = false;
+
+        do {
             if (this.array[i] == key) {
-                return true;
+                exists = true;
+            } else {
+                i = (i + 1) % capacity();
+           
+                        
             }
+        } while (!exists && i == -1);
+        
+        if(exists){
+            return true;
+        }else{
+            return false;
         }
-        return false;
     }
 
     @Override
     public int get(int key) {
-        System.out.println("Returning value at index " + hash(key));
-        return this.array[hash(key)];
+        int i = hash(key);
+        boolean exists = false;
+
+        do {
+            if (this.array[i] == key) {
+                exists = true;
+            } else {
+                i = (i + 1) % capacity();
+           
+                        
+            }
+        } while (!exists && i == -1);
+        
+        if(exists){
+            return this.array[i];
+        }else{
+            return 0;
+        }
+        
+  
     }
 
     @Override
@@ -191,11 +219,6 @@ public class HashTable implements HashTableInterface {
         System.out.println(" Make the table empty then check to see if is Empty works");
         Table1.makeEmpty();
         System.out.println("Is  the table  empty: " + Table1.isEmpty());
-
-        
-
-
-
 
     }
 

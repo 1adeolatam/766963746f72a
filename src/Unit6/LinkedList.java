@@ -1,4 +1,3 @@
- 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -53,7 +52,10 @@ public class LinkedList implements LinkListInterface {
             Node newNode = new Node(str);
 
             newNode.setNext(this.head);
+            newNode.setPrev(null);
             this.head = newNode;
+            this.head.getNext().setPrev(this.head);
+
         } else {
             listEmpty(str);
         }
@@ -62,10 +64,14 @@ public class LinkedList implements LinkListInterface {
 
     @Override
     public void addAtEnd(String str) {
-        if (this.tail != null) {
+        if(isEmpty()){
+            addAtFront(str);
+        }
+        else if (this.tail != null) {
             Node newNode = new Node(str);
 
             this.tail.setNext(newNode);
+            newNode.setPrev(this.tail);
             this.tail = newNode;
         } else {
             listEmpty(str);
@@ -83,30 +89,53 @@ public class LinkedList implements LinkListInterface {
     public void remove(String str) {
 
         Node current = this.head;
-        boolean done = false;
-        if (current.getData().equalsIgnoreCase(str)) {
-            this.head = current.getNext();
-            current.setNext(null);
+        if (exists(str)) {
+            if (current.getData().equalsIgnoreCase(str)) {
 
-        } else {
-            if (current.getNext() != null) {
+                this.head = current.getNext();
+                current.setNext(null);
 
-                int counter = 1;
-                while (current.getNext().getData().equalsIgnoreCase(str)) {
-
-                    counter++;
-
-                    System.out.println(counter);
-
-                    current = current.getNext();
-
-                }
-                current.setNext(current.getNext().getNext());
             } else {
-                System.out.println("The node does not exist.");
+                if (current.getNext() != null) {
+
+                    int counter = 1;
+                    while (current.getNext().getData().equalsIgnoreCase(str)) {
+
+                        counter++;
+
+                        System.out.println(counter);
+
+                        current = current.getNext();
+
+                    }
+                    current.setNext(current.getNext().getNext());
+                } else {
+                    System.out.println("The node does not exist.");
+                }
+
+            }
+        } else {
+            System.out.println("DOES NOT EXIST LIKE.");
+        }
+    }
+
+    public boolean exists(String str) {
+        Node current = this.head;
+        boolean existss = false;
+        int counter = 0;
+        while (!existss && counter < size()) {
+
+            if (current.getData().equalsIgnoreCase(str)) {
+                existss = true;
+            } else {
+                counter++;
+                current = current.getNext();
+
             }
 
         }
+
+        return existss;
 
     }
 
@@ -135,38 +164,71 @@ public class LinkedList implements LinkListInterface {
 
     public static void main(String[] args) {
 
-        LinkedList Alexis2 = new LinkedList();
+        LinkedList ll = new LinkedList();
 
-        // Test 1 adding nodes at end and before 
-        System.out.println("Before size " + Alexis2.size());
-        Alexis2.addAtEnd("1st noderino");
-        Alexis2.addAtEnd("2rd noderino");
-        Alexis2.addAtEnd("3nd noderino");
-        Alexis2.addAtEnd("4st noderino");
-        Alexis2.addAtFront("Keepo");
-        System.out.println(Alexis2.toString());
-        System.out.println("After size " + Alexis2.size());
+        // EMPTY
+        assert (ll.size() == 0);
+        assert (ll.isEmpty());
 
-        // Test removing nodes
-        System.out.println("Before size " + Alexis2.size());
-        Alexis2.remove("2rd noderino");
-        // 3 nodes removed
-        Alexis2.remove("Keepo");
-        Alexis2.remove("4st noderino");
-        Alexis2.remove("hi friends");
+        // REMOVE: EMPTY
+        System.out.println("CASE 1: REMOVE NON EXISTING");
+        ll.remove("ABC");
 
-        System.out.println(Alexis2.toString());
-        System.out.println("After size " + Alexis2.size());
+        // ADD @ FRONT; SIZE 1
+        System.out.println("CASE 2: ADD AT FRONT / REMOVE ONLY ELEMENT");
+        ll.addAtFront("ABC");
+        System.out.println("DATA: " + ll.toString());
+        ll.remove("ABC");
+        assert (ll.size() == 0);
+        assert (ll.isEmpty());
 
-        //  Removing tail
-        LinkedList asas = new LinkedList();
+        // ADD @ END; SIZE 1
+        System.out.println("CASE 3: ADD AT END / REMOVE ONLY ELEMENT");
+        ll.addAtEnd("ABC");
+        System.out.println("DATA: " + ll.toString());
+        ll.remove("ABC");
+        assert (ll.size() == 0);
+        assert (ll.isEmpty());
 
-        asas.addAtEnd("asdas");
-        System.out.println(asas.size());
-        System.out.println(asas.toString());
+        // ADD @ FRONT; SIZE 2
+        System.out.println("CASE 4: ADD AT FRONT / REMOVE 2 ELEMENT");
+        ll.addAtFront("ABC");
+        ll.addAtFront("XYZ");
+        System.out.println("DATA: " + ll.toString());
+        assert (ll.size() == 2);
+        ll.remove("XYZ");
+        System.out.println("DATA: " + ll.toString());
+        assert (ll.size() == 1);
+        ll.remove("ABC");
+        System.out.println("DATA: " + ll.toString());
 
-        asas.remove("asdas");
-        System.out.println(asas.size());
+        // ADD @ BACK; SIZE 2
+        System.out.println("CASE 5: ADD AT END / REMOVE 2 ELEMENT");
+        ll.addAtEnd("ABC");
+        ll.addAtEnd("XYZ");
+        System.out.println("DATA: " + ll.toString());
+        assert (ll.size() == 2);
+        ll.remove("XYZ");
+        System.out.println("DATA: " + ll.toString());
+        assert (ll.size() == 1);
+        ll.remove("ABC");
+        System.out.println("DATA: " + ll.toString());
+
+        // REMOVE; MIDDLE
+        System.out.println("CASE 6: REMOVE TWO ELEMENTS");
+        ll.addAtFront("ABC");
+        ll.addAtFront("123");
+        ll.addAtFront("XYZ");
+        System.out.println("DATA: " + ll.toString());
+        assert (ll.size() == 3);
+        ll.remove("123");
+        System.out.println("DATA: " + ll.toString());
+        assert (ll.size() == 2);
+        ll.remove("XYZ");
+        System.out.println("DATA: " + ll.toString());
+        assert (ll.size() == 1);
+        ll.remove("ABC");
+        System.out.println("DATA: " + ll.toString());
     }
 
     @Override
