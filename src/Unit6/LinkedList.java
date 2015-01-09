@@ -32,9 +32,10 @@ public class LinkedList implements LinkListInterface {
                 length++;
             } while (current != null);
             this.size = length;
+
             return length;
         } else {
-            empty();
+
             return 0;
         }
     }
@@ -43,31 +44,33 @@ public class LinkedList implements LinkListInterface {
     public void makeEmpty() {
         this.head = null;
         this.tail = null;
-        empty();
+
     }
 
     @Override
     public void addAtFront(String str) {
-        if (this.head != null) {
-            Node newNode = new Node(str);
+        Node newNode = new Node(str);
 
-            newNode.setNext(this.head);
+        if (isEmpty()) {
+            newNode.setNext(null);
             newNode.setPrev(null);
             this.head = newNode;
-            this.head.getNext().setPrev(this.head);
-
+            this.tail = newNode;
         } else {
-            listEmpty(str);
+
+            newNode.setNext(this.head);
+            this.head.setPrev(newNode);
+            this.head = newNode;
+
         }
 
     }
 
     @Override
     public void addAtEnd(String str) {
-        if(isEmpty()){
+        if (isEmpty()) {
             addAtFront(str);
-        }
-        else if (this.tail != null) {
+        } else if (this.tail != null) {
             Node newNode = new Node(str);
 
             this.tail.setNext(newNode);
@@ -85,40 +88,46 @@ public class LinkedList implements LinkListInterface {
         this.tail = newNode;
     }
 
+
     @Override
     public void remove(String str) {
-
         Node current = this.head;
         if (exists(str)) {
-            if (current.getData().equalsIgnoreCase(str)) {
-
-                this.head = current.getNext();
-                current.setNext(null);
-
+            if (size() == 1) {
+                this.head = null;
+                this.tail = null;
+            } else if (size() == 0) {
+                System.out.println("Empty List.");
             } else {
-                if (current.getNext() != null) {
-
-                    int counter = 1;
-                    while (current.getNext().getData().equalsIgnoreCase(str)) {
-
-                        counter++;
-
-                        System.out.println(counter);
-
-                        current = current.getNext();
-
-                    }
-                    current.setNext(current.getNext().getNext());
+                if (this.head.getData().equalsIgnoreCase(str)) {
+                    this.head = this.head.getNext();
+                    this.head.getPrev().setNext(null);
+                    this.head.setPrev(null);
+                } else if (this.tail.getData().equalsIgnoreCase(str)){
+                    this.tail = this.tail.getPrev();
+                    this.tail.getNext().setPrev(null);
+                    this.tail.setNext(null);
                 } else {
-                    System.out.println("The node does not exist.");
+                    boolean found = false;
+                    while (!found) {
+                        if (current.getData().equalsIgnoreCase(str)) {
+                            current.getNext().setPrev(current.getPrev());
+                            current.getPrev().setNext(current.getNext());
+                            current.setNext(null);
+                            current.setPrev(null);
+                            found = true;        
+                        } else {
+                            current = current.getNext();
+                        }
+                    }
                 }
-
             }
         } else {
-            System.out.println("DOES NOT EXIST LIKE.");
+            System.out.println("Does not Exist.");
         }
     }
-
+    
+    
     public boolean exists(String str) {
         Node current = this.head;
         boolean existss = false;
@@ -153,13 +162,9 @@ public class LinkedList implements LinkListInterface {
 
             } while (current != null);
         } else {
-            empty();
+
         }
         return Stringu;
-    }
-
-    public void empty() {
-        System.out.println("Linked list is empty");
     }
 
     public static void main(String[] args) {
@@ -190,7 +195,7 @@ public class LinkedList implements LinkListInterface {
         assert (ll.size() == 0);
         assert (ll.isEmpty());
 
-        // ADD @ FRONT; SIZE 2
+         //ADD @ FRONT; SIZE 2
         System.out.println("CASE 4: ADD AT FRONT / REMOVE 2 ELEMENT");
         ll.addAtFront("ABC");
         ll.addAtFront("XYZ");
