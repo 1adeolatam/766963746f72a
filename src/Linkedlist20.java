@@ -9,7 +9,7 @@
  *
  * @author 1adeolatam
  */
-public class Linkedlist20 {
+public class Linkedlist20{
     
     
     public Node20 head;

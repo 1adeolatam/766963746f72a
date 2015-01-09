@@ -13,10 +13,10 @@ import edu.hdsb.gwss.muir.ics4u.u6.HashTableInterface;
  */
 public class HashTable implements HashTableInterface {
 
-    public int[] array;
+    public LinkedList[] array;
 
     public HashTable(int expectedSize) {
-        this.array = new int[nextPrime(expectedSize)];
+        this.array = new LinkedList[nextPrime(expectedSize)];
         this.makeEmpty();
         System.out.println("There are " + size() + " elemenets in this table.");
     }
@@ -24,9 +24,9 @@ public class HashTable implements HashTableInterface {
     @Override
     public void resize() {
         // Makes the expected amount of elements at 25% 75 / 3 = 25.
-        int[] oldArray = this.array;
+        LinkedList[] oldArray = this.array;
 
-        this.array = new int[nextPrime(capacity())];
+        this.array = new LinkedList[nextPrime(capacity())];
         makeEmpty();
 
         for (int i = 0; i < oldArray.length; i++) {
