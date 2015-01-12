@@ -58,25 +58,10 @@ public class OpenHashTable {
      * @return student object for the given key (student number)
      */
     public CSStudent get(int key) {
-         int i = hash(key);
-        boolean exists = false;
+        int i = hash(key);
 
-        do {
-            if (this.array[i].get(i).getKey() == key) {
-                exists = true;
-            } else {
-                i = (i + 1) % capacity();         
-                        
-            }
-        } while (!exists && i == -1);
-        
-        if(exists){
-            return this.array[i].get(key);
-        }else{
-            return null;
-        }
-        
-  
+        return this.array[i].get(key);
+
     }
 
     /**
@@ -86,14 +71,9 @@ public class OpenHashTable {
      * @param student valid student object
      */
     public void put(CSStudent student) {
-       
-   
+
         int index = hash(student.getKey());
-       this.array[index].addAtEnd(student);
-        
-        
-
-
+        this.array[index].addAtEnd(student);
 
     }
 
@@ -105,7 +85,7 @@ public class OpenHashTable {
      * exists
      */
     public boolean containsKey(int key) {
-        
+
         int i = hash(key);
         boolean exists = false;
 
@@ -114,14 +94,13 @@ public class OpenHashTable {
                 exists = true;
             } else {
                 i = (i + 1) % capacity();
-           
-                        
+
             }
         } while (!exists && this.array[i] == null);
-        
-        if(exists){
+
+        if (exists) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -132,7 +111,7 @@ public class OpenHashTable {
      * @return the number of student objects in the hash table.
      */
     public int size() {
-           int totalCounted = 0;
+        int totalCounted = 0;
 
         for (int i = 0; i < this.array.length; i++) {
             if (this.array[i].size() > 0) {
@@ -158,7 +137,6 @@ public class OpenHashTable {
      *
      * @return returns a graphic of the Open Hash Table
      */
-  
     public String toString() {
         String s = "";
         for (int i = 0; i < this.array.length; i++) {

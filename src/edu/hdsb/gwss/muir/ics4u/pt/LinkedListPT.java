@@ -52,7 +52,7 @@ public class LinkedListPT {
      * @return returns true if there are no student objects in the linked list
      */
     public boolean isEmpty() {
-        return this.size() == 0;
+        return this.head == null;
     }
 
     /**

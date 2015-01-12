@@ -191,7 +191,7 @@ public class HashTable implements HashTableInterface {
     @Override
     public int hash(int key) {
         return key % capacity();
-
+        
     }
 
     public static void main(String[] args) {

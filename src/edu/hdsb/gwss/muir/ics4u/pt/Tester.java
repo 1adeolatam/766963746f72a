@@ -57,8 +57,9 @@ public class Tester {
         for(int i = 0; i < Kappa.length; i++){
             ht.put(Kappa[i]);
         }        
-      
-       System.out.println( ht.toString() );
+
+        System.out.println( ht.toString() );
+        System.out.println(ht.isEmpty());
     }
 
 }
